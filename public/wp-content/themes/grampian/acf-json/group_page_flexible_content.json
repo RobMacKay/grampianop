@@ -1,0 +1,778 @@
+{
+    "key": "group_grampian_page_flex",
+    "title": "Page Content Blocks",
+    "fields": [
+        {
+            "key": "field_grampian_content_blocks",
+            "label": "Content Blocks",
+            "name": "content_blocks",
+            "type": "flexible_content",
+            "instructions": "Add and arrange content sections for this page.",
+            "required": 0,
+            "button_label": "Add Content Block",
+            "min": "",
+            "max": "",
+            "layouts": [
+                {
+                    "key": "layout_grampian_text",
+                    "name": "text",
+                    "label": "Text",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_grampian_text_title",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "wrapper": {"width": "", "class": "", "id": ""}
+                        },
+                        {
+                            "key": "field_grampian_text_content",
+                            "label": "Content",
+                            "name": "content",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 1,
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_grampian_text_bg",
+                            "label": "Background Colour",
+                            "name": "background_color",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "choices": {
+                                "default": "White (Default)",
+                                "primary": "Green (Primary)",
+                                "light": "Light Grey"
+                            },
+                            "default_value": "default",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_grampian_text_image",
+                    "name": "text_image",
+                    "label": "Text + Image",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_grampian_ti_title",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_grampian_ti_text",
+                            "label": "Text",
+                            "name": "text",
+                            "type": "wysiwyg",
+                            "required": 0,
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_grampian_ti_image",
+                            "label": "Image",
+                            "name": "image",
+                            "type": "image",
+                            "required": 0,
+                            "return_format": "array",
+                            "preview_size": "medium",
+                            "library": "all"
+                        },
+                        {
+                            "key": "field_grampian_ti_image_position",
+                            "label": "Image Position",
+                            "name": "image_position",
+                            "type": "select",
+                            "required": 0,
+                            "choices": {
+                                "left": "Left",
+                                "right": "Right"
+                            },
+                            "default_value": "right",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_grampian_ti_image_copyright",
+                            "label": "Image Copyright",
+                            "name": "image_copyright",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_grampian_ti_ctas",
+                            "label": "Call to Action Buttons",
+                            "name": "call_to_actions",
+                            "type": "repeater",
+                            "required": 0,
+                            "min": 0,
+                            "max": 4,
+                            "layout": "table",
+                            "button_label": "Add Button",
+                            "sub_fields": [
+                                {
+                                    "key": "field_grampian_ti_cta_label",
+                                    "label": "Label",
+                                    "name": "label",
+                                    "type": "text",
+                                    "required": 1
+                                },
+                                {
+                                    "key": "field_grampian_ti_cta_url",
+                                    "label": "URL",
+                                    "name": "url",
+                                    "type": "url",
+                                    "required": 1
+                                },
+                                {
+                                    "key": "field_grampian_ti_cta_style",
+                                    "label": "Style",
+                                    "name": "style",
+                                    "type": "select",
+                                    "required": 0,
+                                    "choices": {
+                                        "primary": "Primary (Blue)",
+                                        "secondary": "Secondary (Red)",
+                                        "ghost": "Ghost (Outline)",
+                                        "link": "Link"
+                                    },
+                                    "default_value": "primary",
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "ui": 1
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_grampian_ti_bg",
+                            "label": "Background Colour",
+                            "name": "background_color",
+                            "type": "select",
+                            "required": 0,
+                            "choices": {
+                                "default": "White (Default)",
+                                "primary": "Green (Primary)",
+                                "light": "Light Grey"
+                            },
+                            "default_value": "default",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_grampian_image",
+                    "name": "image",
+                    "label": "Image",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_grampian_img_image",
+                            "label": "Image",
+                            "name": "image",
+                            "type": "image",
+                            "required": 1,
+                            "return_format": "array",
+                            "preview_size": "medium",
+                            "library": "all"
+                        },
+                        {
+                            "key": "field_grampian_img_copyright",
+                            "label": "Copyright",
+                            "name": "copyright",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_grampian_img_width",
+                            "label": "Width",
+                            "name": "width",
+                            "type": "select",
+                            "required": 0,
+                            "choices": {
+                                "full": "Full Width",
+                                "three-quarter": "75%",
+                                "half": "50%",
+                                "third": "33%"
+                            },
+                            "default_value": "full",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_grampian_video",
+                    "name": "video",
+                    "label": "Video",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_grampian_video_title",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_grampian_video_url",
+                            "label": "Video URL",
+                            "name": "url",
+                            "type": "oembed",
+                            "instructions": "Paste a YouTube or Vimeo URL",
+                            "required": 1,
+                            "width": "",
+                            "height": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_grampian_html",
+                    "name": "html",
+                    "label": "HTML",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_grampian_html_content",
+                            "label": "HTML",
+                            "name": "html",
+                            "type": "textarea",
+                            "instructions": "Paste raw HTML here. Be careful — no escaping is applied.",
+                            "required": 1,
+                            "rows": 8,
+                            "new_lines": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_grampian_overview",
+                    "name": "overview",
+                    "label": "Overview (Card Grid)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_grampian_ov_title",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_grampian_ov_intro",
+                            "label": "Intro Text",
+                            "name": "intro",
+                            "type": "textarea",
+                            "required": 0,
+                            "rows": 3,
+                            "new_lines": "br"
+                        },
+                        {
+                            "key": "field_grampian_ov_columns",
+                            "label": "Columns",
+                            "name": "columns",
+                            "type": "select",
+                            "required": 0,
+                            "choices": {
+                                "2": "2 Columns",
+                                "3": "3 Columns",
+                                "4": "4 Columns"
+                            },
+                            "default_value": "3",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_grampian_ov_cards",
+                            "label": "Cards",
+                            "name": "cards",
+                            "type": "repeater",
+                            "required": 0,
+                            "min": 1,
+                            "max": 0,
+                            "layout": "block",
+                            "button_label": "Add Card",
+                            "sub_fields": [
+                                {
+                                    "key": "field_grampian_ov_card_image",
+                                    "label": "Image",
+                                    "name": "image",
+                                    "type": "image",
+                                    "required": 0,
+                                    "return_format": "array",
+                                    "preview_size": "thumbnail"
+                                },
+                                {
+                                    "key": "field_grampian_ov_card_title",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "type": "text",
+                                    "required": 1
+                                },
+                                {
+                                    "key": "field_grampian_ov_card_text",
+                                    "label": "Text",
+                                    "name": "text",
+                                    "type": "textarea",
+                                    "required": 0,
+                                    "rows": 3,
+                                    "new_lines": "br"
+                                },
+                                {
+                                    "key": "field_grampian_ov_card_link",
+                                    "label": "Link URL",
+                                    "name": "link",
+                                    "type": "url",
+                                    "required": 0
+                                },
+                                {
+                                    "key": "field_grampian_ov_card_link_text",
+                                    "label": "Link Text",
+                                    "name": "link_text",
+                                    "type": "text",
+                                    "required": 0
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_grampian_ov_bg",
+                            "label": "Background Colour",
+                            "name": "background_color",
+                            "type": "select",
+                            "required": 0,
+                            "choices": {
+                                "default": "White (Default)",
+                                "primary": "Green (Primary)",
+                                "light": "Light Grey"
+                            },
+                            "default_value": "default",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_grampian_quote",
+                    "name": "quote",
+                    "label": "Quote / Testimonial",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_grampian_quote_text",
+                            "label": "Quote",
+                            "name": "quote",
+                            "type": "textarea",
+                            "required": 1,
+                            "rows": 4,
+                            "new_lines": "br"
+                        },
+                        {
+                            "key": "field_grampian_quote_author",
+                            "label": "Author",
+                            "name": "author",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_grampian_quote_bg",
+                            "label": "Background Colour",
+                            "name": "background_color",
+                            "type": "select",
+                            "required": 0,
+                            "choices": {
+                                "default": "White (Default)",
+                                "primary": "Green (Primary)",
+                                "light": "Light Grey"
+                            },
+                            "default_value": "light",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_grampian_quote_align",
+                            "label": "Text Alignment",
+                            "name": "text_alignment",
+                            "type": "select",
+                            "required": 0,
+                            "choices": {
+                                "center": "Centre",
+                                "left":   "Left",
+                                "right":  "Right"
+                            },
+                            "default_value": "center",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_grampian_cta",
+                    "name": "call_to_action",
+                    "label": "Call to Action",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_grampian_cta_title",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_grampian_cta_text",
+                            "label": "Text",
+                            "name": "text",
+                            "type": "textarea",
+                            "required": 0,
+                            "rows": 3,
+                            "new_lines": "br"
+                        },
+                        {
+                            "key": "field_grampian_cta_buttons",
+                            "label": "Buttons",
+                            "name": "buttons",
+                            "type": "repeater",
+                            "required": 1,
+                            "min": 1,
+                            "max": 4,
+                            "layout": "table",
+                            "button_label": "Add Button",
+                            "sub_fields": [
+                                {
+                                    "key": "field_grampian_cta_btn_label",
+                                    "label": "Label",
+                                    "name": "label",
+                                    "type": "text",
+                                    "required": 1
+                                },
+                                {
+                                    "key": "field_grampian_cta_btn_url",
+                                    "label": "URL",
+                                    "name": "url",
+                                    "type": "url",
+                                    "required": 1
+                                },
+                                {
+                                    "key": "field_grampian_cta_btn_style",
+                                    "label": "Style",
+                                    "name": "style",
+                                    "type": "select",
+                                    "required": 0,
+                                    "choices": {
+                                        "primary": "Primary (Blue)",
+                                        "secondary": "Secondary (Red)",
+                                        "ghost": "Ghost (Outline)",
+                                        "link": "Link"
+                                    },
+                                    "default_value": "primary",
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "ui": 1
+                                },
+                                {
+                                    "key": "field_grampian_cta_btn_target",
+                                    "label": "Open in new tab",
+                                    "name": "new_tab",
+                                    "type": "true_false",
+                                    "required": 0,
+                                    "default_value": 0,
+                                    "ui": 1
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_grampian_cta_bg",
+                            "label": "Background Colour",
+                            "name": "background_color",
+                            "type": "select",
+                            "required": 0,
+                            "choices": {
+                                "default": "White (Default)",
+                                "primary": "Green (Primary)",
+                                "light": "Light Grey"
+                            },
+                            "default_value": "default",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_grampian_cards",
+                    "name": "cards",
+                    "label": "Cards",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_grampian_cards_title",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_grampian_cards_columns",
+                            "label": "Columns",
+                            "name": "columns",
+                            "type": "select",
+                            "required": 0,
+                            "choices": {
+                                "2": "2 Columns",
+                                "3": "3 Columns",
+                                "4": "4 Columns"
+                            },
+                            "default_value": "3",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_grampian_cards_items",
+                            "label": "Cards",
+                            "name": "cards",
+                            "type": "repeater",
+                            "required": 1,
+                            "min": 1,
+                            "max": 0,
+                            "layout": "block",
+                            "button_label": "Add Card",
+                            "sub_fields": [
+                                {
+                                    "key": "field_grampian_cards_item_image",
+                                    "label": "Image",
+                                    "name": "image",
+                                    "type": "image",
+                                    "required": 0,
+                                    "return_format": "array",
+                                    "preview_size": "thumbnail"
+                                },
+                                {
+                                    "key": "field_grampian_cards_item_title",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "type": "text",
+                                    "required": 1
+                                },
+                                {
+                                    "key": "field_grampian_cards_item_text",
+                                    "label": "Text",
+                                    "name": "text",
+                                    "type": "textarea",
+                                    "required": 0,
+                                    "rows": 3,
+                                    "new_lines": "br"
+                                },
+                                {
+                                    "key": "field_grampian_cards_item_link",
+                                    "label": "Link",
+                                    "name": "link",
+                                    "type": "link",
+                                    "required": 0,
+                                    "return_format": "array"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_grampian_cards_bg",
+                            "label": "Background Colour",
+                            "name": "background_color",
+                            "type": "select",
+                            "required": 0,
+                            "choices": {
+                                "default": "White (Default)",
+                                "primary": "Green (Primary)",
+                                "light": "Light Grey"
+                            },
+                            "default_value": "default",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_grampian_template",
+                    "name": "template",
+                    "label": "Template / Embed",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_grampian_tpl_name",
+                            "label": "Template",
+                            "name": "template",
+                            "type": "select",
+                            "required": 1,
+                            "choices": {
+                                "contact-form": "Contact Form",
+                                "referral-form": "Online Referral Form",
+                                "events-block": "Upcoming Events",
+                                "positions-block": "Job Positions",
+                                "volunteer-positions-block": "Volunteer Positions",
+                                "funders-block": "Funders & Supporters",
+                                "google-map": "Google Map"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_grampian_activities",
+                    "name": "activities",
+                    "label": "Activities",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_grampian_activities_title",
+                            "label": "Section Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "Optional heading displayed above the activity cards.",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_grampian_activities_intro",
+                            "label": "Intro Text",
+                            "name": "intro",
+                            "type": "textarea",
+                            "instructions": "Optional description displayed below the section title.",
+                            "required": 0,
+                            "rows": 3,
+                            "new_lines": "br"
+                        },
+                        {
+                            "key": "field_grampian_activities_items",
+                            "label": "Activities",
+                            "name": "activities",
+                            "type": "relationship",
+                            "instructions": "Select and order the activities to display. Drag to reorder.",
+                            "required": 0,
+                            "post_type": ["activity"],
+                            "taxonomy": [],
+                            "filters": ["search"],
+                            "return_format": "object",
+                            "min": "",
+                            "max": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_grampian_hero",
+                    "name": "hero",
+                    "label": "Hero Image",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_grampian_hero_image",
+                            "label": "Image",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "Large banner image. Recommended: 1200×500px or wider.",
+                            "required": 1,
+                            "return_format": "array",
+                            "preview_size": "medium",
+                            "library": "all"
+                        },
+                        {
+                            "key": "field_grampian_hero_title",
+                            "label": "Overlay Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "Optional title overlaid on the image. Defaults to the page title.",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_grampian_hero_copyright",
+                            "label": "Image Copyright",
+                            "name": "copyright",
+                            "type": "text",
+                            "instructions": "Optional copyright credit shown in the bottom-right corner.",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_grampian_hero_intro",
+                            "label": "Intro Text",
+                            "name": "intro",
+                            "type": "wysiwyg",
+                            "instructions": "Optional introductory paragraph displayed below the hero image.",
+                            "required": 0,
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 0,
+                            "delay": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": "1"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 10,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content"
+    ],
+    "active": true,
+    "description": "Flexible content builder for pages",
+    "show_in_rest": false,
+    "modified": 1743293940
+}

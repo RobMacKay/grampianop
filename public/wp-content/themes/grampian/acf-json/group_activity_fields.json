@@ -1,0 +1,77 @@
+{
+    "key": "group_grampian_activity_fields",
+    "title": "Activity Details",
+    "fields": [
+        {
+            "key": "field_grampian_act_icon",
+            "label": "Icon Image",
+            "name": "icon",
+            "type": "image",
+            "instructions": "Round icon displayed at the top of the activity card. Works best as a square image.",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all"
+        },
+        {
+            "key": "field_grampian_act_intro",
+            "label": "Card Intro Text",
+            "name": "intro",
+            "type": "textarea",
+            "instructions": "Short description shown on the activity card.",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_grampian_act_cta_text",
+            "label": "Button Text",
+            "name": "cta_text",
+            "type": "text",
+            "instructions": "Text for the call-to-action button on the card. Links to this activity's page.",
+            "required": 0,
+            "default_value": "Find out more"
+        },
+        {
+            "key": "field_grampian_act_color",
+            "label": "Card Colour",
+            "name": "card_color",
+            "type": "select",
+            "instructions": "Background gradient colour for the activity card.",
+            "required": 0,
+            "choices": {
+                "red":    "Red",
+                "orange": "Orange",
+                "yellow": "Yellow",
+                "green":  "Green",
+                "blue":   "Blue",
+                "purple": "Purple",
+                "pink":   "Pink",
+                "teal":   "Teal"
+            },
+            "default_value": "green",
+            "return_format": "value",
+            "multiple": 0,
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "activity"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Icon, intro text and CTA button settings for activity cards",
+    "show_in_rest": false,
+    "modified": 1743379200
+}

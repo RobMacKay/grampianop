@@ -1,0 +1,196 @@
+{
+    "key": "group_grampian_site_options",
+    "title": "Site Settings",
+    "fields": [
+        {
+            "key": "field_grampian_opt_tab_contact",
+            "label": "Contact",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_grampian_opt_phone",
+            "label": "Phone Number",
+            "name": "phone",
+            "type": "text",
+            "instructions": "Displayed in header and footer.",
+            "required": 0,
+            "default_value": "01467 629675"
+        },
+        {
+            "key": "field_grampian_opt_email",
+            "label": "Email Address",
+            "name": "email",
+            "type": "email",
+            "instructions": "Displayed in header and footer.",
+            "required": 0,
+            "default_value": "info@grampianopportunities.org.uk"
+        },
+        {
+            "key": "field_grampian_opt_address",
+            "label": "Address",
+            "name": "address",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "br",
+            "default_value": "54 West High Street, Inverurie, Aberdeenshire, AB51 3QR"
+        },
+        {
+            "key": "field_grampian_opt_charity_number",
+            "label": "Charity Number",
+            "name": "charity_number",
+            "type": "text",
+            "instructions": "Scottish charity number shown in footer.",
+            "required": 0,
+            "default_value": "SC030396"
+        },
+        {
+            "key": "field_grampian_opt_tab_links",
+            "label": "Links",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_grampian_opt_donate_url",
+            "label": "Donate URL",
+            "name": "donate_url",
+            "type": "url",
+            "instructions": "Just Giving or other donation page link.",
+            "required": 0,
+            "default_value": "https://checkout.justgiving.com/c/3088502"
+        },
+        {
+            "key": "field_grampian_opt_facebook_url",
+            "label": "Facebook URL",
+            "name": "facebook_url",
+            "type": "url",
+            "required": 0,
+            "default_value": "https://www.facebook.com/GOGrampianOpportunities/"
+        },
+        {
+            "key": "field_grampian_opt_instagram_url",
+            "label": "Instagram URL",
+            "name": "instagram_url",
+            "type": "url",
+            "required": 0,
+            "default_value": "https://www.instagram.com/grampian54whs/"
+        },
+        {
+            "key": "field_grampian_opt_get_support_url",
+            "label": "\"Get Support\" Button URL",
+            "name": "get_support_url",
+            "type": "url",
+            "instructions": "Blue button in header.",
+            "required": 0,
+            "default_value": "/online-referral"
+        },
+        {
+            "key": "field_grampian_opt_volunteer_url",
+            "label": "\"Volunteer\" Button URL",
+            "name": "volunteer_url",
+            "type": "url",
+            "instructions": "Red button in header.",
+            "required": 0,
+            "default_value": "/volunteering"
+        },
+        {
+            "key": "field_grampian_opt_tab_branding",
+            "label": "Branding",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_grampian_opt_logo_wide",
+            "label": "Logo (Wide)",
+            "name": "logo_wide",
+            "type": "image",
+            "instructions": "Used in header. Replaces the static go_name2.webp file.",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "thumbnail"
+        },
+        {
+            "key": "field_grampian_opt_logo_compact",
+            "label": "Logo (Compact)",
+            "name": "logo_compact",
+            "type": "image",
+            "instructions": "Used in footer. Replaces the static gologo.webp file.",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "thumbnail"
+        },
+        {
+            "key": "field_grampian_opt_banner_text",
+            "label": "Sticky Banner Text",
+            "name": "banner_text",
+            "type": "text",
+            "instructions": "Text shown in the banner strip below the nav.",
+            "required": 0,
+            "default_value": "Serving the community for over 25 years"
+        },
+        {
+            "key": "field_grampian_opt_tab_scripts",
+            "label": "Scripts",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_grampian_opt_userway_account",
+            "label": "UserWay Account ID",
+            "name": "userway_account",
+            "type": "text",
+            "instructions": "Accessibility widget account ID (data-account attribute).",
+            "required": 0,
+            "default_value": "bpLNpQ6emd"
+        },
+        {
+            "key": "field_grampian_opt_header_scripts",
+            "label": "Additional Header Scripts",
+            "name": "header_scripts",
+            "type": "textarea",
+            "instructions": "Injected before </head>. Use for analytics, consent, etc.",
+            "required": 0,
+            "rows": 6,
+            "new_lines": ""
+        },
+        {
+            "key": "field_grampian_opt_footer_scripts",
+            "label": "Additional Footer Scripts",
+            "name": "footer_scripts",
+            "type": "textarea",
+            "instructions": "Injected before </body>.",
+            "required": 0,
+            "rows": 6,
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "site-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Global site settings: contact info, links, branding, scripts",
+    "show_in_rest": false,
+    "modified": 1743293940
+}

@@ -1,0 +1,107 @@
+{
+    "key": "group_grampian_position_fields",
+    "title": "Position Details",
+    "fields": [
+        {
+            "key": "field_grampian_pos_type",
+            "label": "Position Type",
+            "name": "position_type",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "choices": {
+                "job": "Paid Job",
+                "volunteer": "Volunteer"
+            },
+            "default_value": "job",
+            "return_format": "value",
+            "multiple": 0,
+            "ui": 1
+        },
+        {
+            "key": "field_grampian_pos_description",
+            "label": "Description",
+            "name": "description",
+            "type": "wysiwyg",
+            "instructions": "Full job description. Shown on the position detail page.",
+            "required": 1,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_grampian_pos_closing_date",
+            "label": "Closing Date",
+            "name": "closing_date",
+            "type": "date_picker",
+            "instructions": "Leave blank for no closing date.",
+            "required": 0,
+            "display_format": "d/m/Y",
+            "return_format": "Y-m-d",
+            "first_day": 1
+        },
+        {
+            "key": "field_grampian_pos_hours",
+            "label": "Hours per Week",
+            "name": "hours",
+            "type": "text",
+            "instructions": "e.g. \"35 hours\" or \"Part-time, flexible\"",
+            "required": 0
+        },
+        {
+            "key": "field_grampian_pos_salary",
+            "label": "Salary / Remuneration",
+            "name": "salary",
+            "type": "text",
+            "instructions": "e.g. \"£25,000 – £28,000\" or \"Voluntary, expenses paid\"",
+            "required": 0
+        },
+        {
+            "key": "field_grampian_pos_location",
+            "label": "Location",
+            "name": "location",
+            "type": "text",
+            "instructions": "e.g. \"Inverurie\" or \"Hybrid\"",
+            "required": 0
+        },
+        {
+            "key": "field_grampian_pos_apply_url",
+            "label": "Apply / More Info URL",
+            "name": "apply_url",
+            "type": "url",
+            "instructions": "External application URL. Leave blank to use the default contact form.",
+            "required": 0
+        },
+        {
+            "key": "field_grampian_pos_document",
+            "label": "Job Description PDF",
+            "name": "document",
+            "type": "file",
+            "instructions": "Optional downloadable PDF.",
+            "required": 0,
+            "return_format": "array",
+            "library": "all",
+            "mime_types": "pdf"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "position"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Fields for job and volunteer positions",
+    "show_in_rest": false,
+    "modified": 1743293940
+}

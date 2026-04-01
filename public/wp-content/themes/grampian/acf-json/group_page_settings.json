@@ -1,0 +1,140 @@
+{
+    "key": "group_grampian_page_settings",
+    "title": "Page Settings",
+    "fields": [
+        {
+            "key": "field_grampian_ps_tab_hero",
+            "label": "Hero",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_grampian_ps_hero_image",
+            "label": "Hero Image",
+            "name": "hero_image",
+            "type": "image",
+            "instructions": "Large banner image displayed at the top of the page. Recommended: 1200×630px.",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_grampian_ps_hero_title",
+            "label": "Hero Image Title",
+            "name": "hero_image_title",
+            "type": "text",
+            "instructions": "Optional overlay title on hero image. Defaults to page title.",
+            "required": 0
+        },
+        {
+            "key": "field_grampian_ps_hero_copyright",
+            "label": "Hero Image Copyright",
+            "name": "hero_image_copyright",
+            "type": "text",
+            "required": 0
+        },
+        {
+            "key": "field_grampian_ps_intro",
+            "label": "Intro Text",
+            "name": "intro",
+            "type": "wysiwyg",
+            "instructions": "Short introductory text displayed below the hero, above content blocks.",
+            "required": 0,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_grampian_ps_tab_seo",
+            "label": "SEO",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_grampian_ps_seo_title",
+            "label": "SEO Title",
+            "name": "seo_title",
+            "type": "text",
+            "instructions": "Overrides the browser tab title and OG title. Leave blank to use the page title.",
+            "required": 0,
+            "maxlength": 70
+        },
+        {
+            "key": "field_grampian_ps_seo_description",
+            "label": "Meta Description",
+            "name": "seo_description",
+            "type": "textarea",
+            "instructions": "Used for search results and social media sharing. Aim for 120–160 characters.",
+            "required": 0,
+            "rows": 3,
+            "maxlength": 160,
+            "new_lines": ""
+        },
+        {
+            "key": "field_grampian_ps_seo_image",
+            "label": "Social Share Image",
+            "name": "seo_image",
+            "type": "image",
+            "instructions": "Image used when sharing on Facebook, Twitter, etc. Recommended: 1200×630px.",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_grampian_ps_tab_publish",
+            "label": "Publishing",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_grampian_ps_publish_from",
+            "label": "Publish From",
+            "name": "publishing_begins_at",
+            "type": "date_time_picker",
+            "instructions": "Leave blank to publish immediately.",
+            "required": 0,
+            "display_format": "d/m/Y H:i",
+            "return_format": "Y-m-d H:i:s",
+            "first_day": 1
+        },
+        {
+            "key": "field_grampian_ps_publish_until",
+            "label": "Publish Until",
+            "name": "publishing_ends_at",
+            "type": "date_time_picker",
+            "instructions": "Leave blank to publish indefinitely.",
+            "required": 0,
+            "display_format": "d/m/Y H:i",
+            "return_format": "Y-m-d H:i:s",
+            "first_day": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 5,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "Hero image, intro text, SEO and publishing settings for pages",
+    "show_in_rest": false,
+    "modified": 1743293940
+}
