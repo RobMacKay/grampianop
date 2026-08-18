@@ -4,8 +4,10 @@
   "version": 3,
   "settings": {
     "layout": {
-      "contentSize": "48rem"
+      "contentSize": "1240px",
+      "wideSize": "1440px"
     },
+    "useRootPaddingAwareAlignments": true,
     "background": {
       "backgroundImage": true
     },

@@ -50,6 +50,30 @@
           @case('activities')
             @include('blocks.activities', ['block' => $block])
             @break
+          @case('go_hero')
+            @include('blocks.go-hero', ['block' => $block])
+            @break
+          @case('go_audience_router')
+            @include('blocks.go-audience-router', ['block' => $block])
+            @break
+          @case('go_service_grid')
+            @include('blocks.go-service-grid', ['block' => $block])
+            @break
+          @case('go_impact_band')
+            @include('blocks.go-impact-band', ['block' => $block])
+            @break
+          @case('go_events_strip')
+            @include('blocks.go-events-strip', ['block' => $block])
+            @break
+          @case('go_get_involved')
+            @include('blocks.go-get-involved', ['block' => $block])
+            @break
+          @case('go_logo_wall')
+            @include('blocks.go-logo-wall', ['block' => $block])
+            @break
+          @case('go_visit')
+            @include('blocks.go-visit', ['block' => $block])
+            @break
         @endswitch
       @endforeach
     @endif

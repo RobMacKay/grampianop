@@ -1,0 +1,129 @@
+{
+    "key": "group_referral_page",
+    "title": "Referral Page",
+    "fields": [
+        {
+            "key": "field_referral_page_intro",
+            "label": "Intro",
+            "name": "referral_intro",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Shown above the form. Explain who the form is for and what happens next.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_referral_page_step_labels",
+            "label": "Step labels",
+            "name": "referral_step_labels",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Names shown in the progress bar, in order. These must match the tabs on the Referral Details field group — one row per tab.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "collapsed": "field_referral_page_step_label",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Add step",
+            "sub_fields": [
+                {
+                    "key": "field_referral_page_step_label",
+                    "label": "Label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": ""
+                }
+            ]
+        },
+        {
+            "key": "field_referral_page_success_heading",
+            "label": "Success heading",
+            "name": "referral_success_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Shown after a referral is submitted.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "Referral received",
+            "maxlength": ""
+        },
+        {
+            "key": "field_referral_page_success_body",
+            "label": "Success message",
+            "name": "referral_success_body",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "Thank you. Someone from the team will review this referral and be in touch.",
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_referral_page_notify",
+            "label": "Notification emails",
+            "name": "referral_notify_emails",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Comma-separated. Leave blank to use the address on Site Settings. Notifications contain a summary and an admin link only — never the referral details.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_referral_page_privacy",
+            "label": "Privacy policy page",
+            "name": "referral_privacy_page",
+            "aria-label": "",
+            "type": "page_link",
+            "instructions": "Linked beneath the form.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "post_type": ["page"],
+            "post_status": ["publish"],
+            "taxonomy": "",
+            "allow_archives": 0,
+            "multiple": 0,
+            "allow_null": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-referral.blade.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Editable content for the Referral Form page template.",
+    "show_in_rest": 0,
+    "modified": 1786000000
+}

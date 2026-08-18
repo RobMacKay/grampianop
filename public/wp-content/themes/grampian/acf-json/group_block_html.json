@@ -1,0 +1,45 @@
+{
+    "key": "group_block_html",
+    "title": "Custom HTML Block",
+    "fields": [
+        {
+            "key": "field_grampian_html_content",
+            "label": "HTML",
+            "name": "html",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Paste raw HTML here. Be careful \u2014 no escaping is applied.",
+            "required": 1,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 8,
+            "new_lines": "",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/html"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Fields for the Custom HTML block",
+    "show_in_rest": 0,
+    "modified": 1786901657
+}

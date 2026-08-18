@@ -1,0 +1,61 @@
+{
+    "key": "group_block_activities",
+    "title": "Activities Block",
+    "fields": [
+        {
+            "key": "field_grampian_activities_title",
+            "label": "Section Title",
+            "name": "title",
+            "type": "text",
+            "instructions": "Optional heading displayed above the activity cards.",
+            "required": 0
+        },
+        {
+            "key": "field_grampian_activities_intro",
+            "label": "Intro Text",
+            "name": "intro",
+            "type": "textarea",
+            "instructions": "Optional description displayed below the section title.",
+            "required": 0,
+            "rows": 3,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_grampian_activities_items",
+            "label": "Activities",
+            "name": "activities",
+            "type": "relationship",
+            "instructions": "Select and order the activities to display. Drag to reorder.",
+            "required": 0,
+            "post_type": [
+                "activity"
+            ],
+            "taxonomy": [],
+            "filters": [
+                "search"
+            ],
+            "return_format": "object",
+            "min": "",
+            "max": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/activities"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Fields for the Activities block",
+    "show_in_rest": 0,
+    "modified": 1786901657
+}
