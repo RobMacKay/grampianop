@@ -1,6 +1,8 @@
 @import "tailwindcss" theme(static);
 @plugin "@tailwindcss/typography";
 @import "./theme.css";
+@import "./go-prose.css";
+@import "./go-form.css";
 @source "../views/";
 @source "../../app/";
 
@@ -11,6 +13,27 @@
   --color-og-green-600: #068E3A;
   --color-og-green-800: #057928;
   --font-sans: 'Roboto', ui-sans-serif, system-ui, sans-serif;
+
+  /* GO redesign colour tokens */
+  --color-go-green: #04A44D;
+  --color-go-green-deep: #06582C;
+  --color-go-green-deepest: #04421F;
+  --color-go-green-light: #7EE2A8;
+  --color-go-green-pale: #DCEFE3;
+  --color-go-mint: #EDF6F0;
+  --color-go-cream: #FBF8F3;
+  --color-go-ink: #14181A;
+  --color-go-ink-soft: #333B3D;
+  --color-go-line: #DDE5DE;
+  --color-go-blue: #123F9E;
+  --color-go-red: #8B1414;
+  --color-go-red-hover: #6E0F0F;
+  --color-go-red-pale: #F8DCDC;
+  --color-go-blue-line: #7FA9F5;
+
+  /* GO redesign font families */
+  --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Atkinson Hyperlegible', ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
@@ -36,6 +59,79 @@
 
   [x-cloak] {
     display: none !important;
+  }
+
+  /* ── Standard page content layout ─────────────────────────────────────
+     ACF GO blocks carry .go-block (plus .not-prose) on their <section> and
+     are direct children of article.go-page-content — no extra wrapper.
+       - .go-block          → full-bleed, hands-off
+       - :not(.go-block)    → core blocks: laid out on the GO container track
+
+     Core blocks share the GO sections' 1240px container, so a heading's left
+     edge lines up with every GO section heading down the page. Text is then
+     capped at a readable measure inside that track rather than running the
+     full 1240px — set --go-measure to var(--go-container) to opt out.
+  ───────────────────────────────────────────────────────────────────── */
+
+  .go-page-content {
+    --go-gutter: 24px;
+    --go-container: 1240px;
+    /* A length, not ch: ch scales with each element's own font-size, which
+       would give a 44px heading a far wider cap than 18px body text. */
+    --go-measure: 52rem;
+  }
+
+  /* GO blocks: full-width, no interference */
+  .go-page-content > .go-block {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  /* Core blocks: left edge on the container, capped at a readable measure */
+  .go-page-content > :not(.go-block) {
+    max-width: var(--go-measure);
+    margin-inline: max(
+      var(--go-gutter),
+      (100% - var(--go-container)) / 2 + var(--go-gutter)
+    );
+  }
+
+  /* Blocks that earn the full container width rather than the text measure */
+  .go-page-content > :is(
+    .alignwide,
+    .wp-block-image,
+    .wp-block-gallery,
+    .wp-block-table,
+    .wp-block-columns,
+    .wp-block-embed,
+    .wp-block-video,
+    .wp-block-cover,
+    .wp-block-media-text
+  ) {
+    max-width: min(
+      var(--go-container) - var(--go-gutter) * 2,
+      100% - var(--go-gutter) * 2
+    );
+  }
+
+  /* alignfull escapes the container entirely */
+  .go-page-content > .alignfull {
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  :focus-visible {
+    outline: 3px solid #06582C;
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   @font-face {

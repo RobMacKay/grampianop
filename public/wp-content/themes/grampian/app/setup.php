@@ -6,7 +6,52 @@
 
 namespace App;
 
+use App\Forms\ContactFormHandler;
+use App\Forms\ContactNotifier;
+use App\Forms\ReferralNotifier;
 use Illuminate\Support\Facades\Vite;
+
+Editor::init();
+Blocks::init();
+ReferralNotifier::init();
+ContactNotifier::init();
+
+/**
+ * Legacy contact form handler, still used by template-contact.blade.php.
+ * Retire once the Contact page is switched over to the Contact Form block.
+ */
+add_action('admin_post_submit_contact', [ContactFormHandler::class, 'handle']);
+add_action('admin_post_nopriv_submit_contact', [ContactFormHandler::class, 'handle']);
+
+/**
+ * Boot ACF's front-end form handler.
+ *
+ * acf_form_head() processes the POST, saves the post and issues the redirect, so
+ * it has to run before Blade emits a single byte — hence template_redirect at
+ * priority 1 rather than anything inside the view.
+ */
+add_action('template_redirect', function () {
+    if (! function_exists('acf_form_head')) {
+        return;
+    }
+
+    if (is_page_template('template-referral.blade.php')) {
+        acf_form_head();
+
+        return;
+    }
+
+    // The contact form is a block, so there is no template to key off. Note
+    // has_block() only inspects post_content — a contact block nested inside a
+    // reusable block or the flexible-content template will not be found here.
+    $post = get_queried_object();
+
+    // Note the leading backslash: this file is namespaced App, so an unqualified
+    // WP_Post would resolve to App\WP_Post and never match.
+    if ($post instanceof \WP_Post && has_block('acf/contact-form', $post)) {
+        acf_form_head();
+    }
+}, 1);
 
 /**
  * Inject styles into the block editor.
@@ -69,6 +114,16 @@ add_action('after_setup_theme', function () {
      * @link https://wptavern.com/gutenberg-10-5-embeds-pdfs-adds-verse-block-color-options-and-introduces-new-patterns
      */
     remove_theme_support('block-templates');
+
+    /**
+     * Load editor stylesheet so ACF block previews render with the same
+     * fonts and utility classes as the frontend. The compiled editor.css
+     * asset path is resolved after the Vite build; during development the
+     * block_editor_settings_all filter below handles hot-reload injection.
+     */
+    add_theme_support('align-wide');
+    add_theme_support('editor-styles');
+    add_editor_style(Vite::asset('resources/css/editor.css'));
 
     /**
      * Register the navigation menus.

@@ -1,0 +1,64 @@
+{
+    "key": "group_block_hero",
+    "title": "Hero Block",
+    "fields": [
+        {
+            "key": "field_grampian_hero_image",
+            "label": "Image",
+            "name": "image",
+            "type": "image",
+            "instructions": "Large banner image. Recommended: 1200\u00d7500px or wider.",
+            "required": 1,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_grampian_hero_title",
+            "label": "Overlay Title",
+            "name": "title",
+            "type": "text",
+            "instructions": "Optional title overlaid on the image. Defaults to the page title.",
+            "required": 0
+        },
+        {
+            "key": "field_grampian_hero_copyright",
+            "label": "Image Copyright",
+            "name": "copyright",
+            "type": "text",
+            "instructions": "Optional copyright credit shown in the bottom-right corner.",
+            "required": 0
+        },
+        {
+            "key": "field_grampian_hero_intro",
+            "label": "Intro Text",
+            "name": "intro",
+            "type": "wysiwyg",
+            "instructions": "Optional introductory paragraph displayed below the hero image.",
+            "required": 0,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/hero"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Fields for the Hero block",
+    "show_in_rest": 0,
+    "modified": 1786901657
+}

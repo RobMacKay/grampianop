@@ -1,1 +1,108 @@
-@import "tailwindcss";
+@import "tailwindcss" theme(static);
+@plugin "@tailwindcss/typography";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap');
+@import "./go-prose.css";
+
+/* Scan the same paths as app.css so all utility classes are generated */
+@source "../views/";
+@source "../../app/";
+
+@theme {
+  /* Existing OG green scale */
+  --color-og-green-100: #B3DABD;
+  --color-og-green-200: #8DC79C;
+  --color-og-green-400: #04A44D;
+  --color-og-green-600: #068E3A;
+  --color-og-green-800: #057928;
+  --font-sans: 'Roboto', ui-sans-serif, system-ui, sans-serif;
+
+  /* GO redesign colour tokens */
+  --color-go-green: #04A44D;
+  --color-go-green-deep: #06582C;
+  --color-go-green-deepest: #04421F;
+  --color-go-green-light: #7EE2A8;
+  --color-go-mint: #EDF6F0;
+  --color-go-cream: #FBF8F3;
+  --color-go-ink: #14181A;
+  --color-go-ink-soft: #333B3D;
+  --color-go-line: #DDE5DE;
+  --color-go-blue: #123F9E;
+  --color-go-red: #8B1414;
+  --color-go-red-hover: #6E0F0F;
+  --color-go-red-pale: #F8DCDC;
+  --color-go-blue-line: #7FA9F5;
+  --color-go-green-pale: #DCEFE3;
+
+  /* GO redesign font families */
+  --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Atkinson Hyperlegible', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  /* Editor canvas base font */
+  .editor-styles-wrapper {
+    font-family: var(--font-body);
+  }
+
+  /* GO blocks: full-width in the editor canvas */
+  .editor-styles-wrapper .wp-block:has(> .go-block),
+  .editor-styles-wrapper .wp-block.alignfull,
+  .editor-styles-wrapper .wp-block[data-align="full"] {
+    max-width: none !important;
+    width: 100% !important;
+    margin-inline: 0 !important;
+  }
+
+  /* Core blocks: same container track as the front end, so what the editor
+     shows matches what ships. Mirrors the .go-page-content rules in app.css. */
+  .editor-styles-wrapper {
+    --go-gutter: 24px;
+    --go-container: 1240px;
+    /* A length, not ch: ch scales with each element's own font-size, which
+       would give a 44px heading a far wider cap than 18px body text. */
+    --go-measure: 52rem;
+  }
+
+  .editor-styles-wrapper .wp-block:not(:has(> .go-block)):not(.alignfull):not([data-align="full"]) {
+    max-width: var(--go-measure);
+    margin-inline: max(
+      var(--go-gutter),
+      (100% - var(--go-container)) / 2 + var(--go-gutter)
+    );
+  }
+
+  .editor-styles-wrapper .wp-block:is(
+    .alignwide,
+    [data-align="wide"],
+    .wp-block-image,
+    .wp-block-gallery,
+    .wp-block-table,
+    .wp-block-columns,
+    .wp-block-embed,
+    .wp-block-video,
+    .wp-block-cover,
+    .wp-block-media-text
+  ) {
+    max-width: min(
+      var(--go-container) - var(--go-gutter) * 2,
+      100% - var(--go-gutter) * 2
+    );
+  }
+
+  /* Prevent WP editor from underlining all links */
+  a:where(:not(.wp-element-button)) {
+    text-decoration: none;
+  }
+
+  :focus-visible {
+    outline: 3px solid #06582C;
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

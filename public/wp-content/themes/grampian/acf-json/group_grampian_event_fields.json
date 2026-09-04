@@ -3,24 +3,73 @@
     "title": "Event Details",
     "fields": [
         {
+            "key": "field_grampian_ev_type",
+            "label": "Event Type",
+            "name": "event_type",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "one_off": "One-off \u2014 specific date and time",
+                "recurring": "Recurring \u2014 repeats on a schedule"
+            },
+            "default_value": "one_off",
+            "return_format": "value",
+            "layout": "horizontal",
+            "allow_null": 0,
+            "other_choice": 0,
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_grampian_ev_tab_date",
+            "label": "Date & Time",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_type",
+                        "operator": "==",
+                        "value": "one_off"
+                    }
+                ]
+            ]
+        },
+        {
             "key": "field_grampian_ev_start_date",
             "label": "Start Date & Time",
             "name": "start_date",
             "aria-label": "",
             "type": "date_time_picker",
-            "instructions": "Required Start Date",
-            "required": 1,
-            "conditional_logic": 0,
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_type",
+                        "operator": "==",
+                        "value": "one_off"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "50",
                 "class": "",
                 "id": ""
             },
-            "display_format": "d\/m\/Y H:i",
+            "display_format": "d/m/Y H:i",
             "return_format": "Y-m-d H:i:s",
             "first_day": 1,
-            "default_to_current_date": 0,
-            "allow_in_bindings": 1
+            "default_to_current_date": 0
         },
         {
             "key": "field_grampian_ev_end_date",
@@ -28,19 +77,352 @@
             "name": "end_date",
             "aria-label": "",
             "type": "date_time_picker",
-            "instructions": "Leave blank for a single-day event.",
+            "instructions": "Leave blank if end time is not relevant.",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_type",
+                        "operator": "==",
+                        "value": "one_off"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "50",
                 "class": "",
                 "id": ""
             },
-            "display_format": "d\/m\/Y H:i",
+            "display_format": "d/m/Y H:i",
             "return_format": "Y-m-d H:i:s",
             "first_day": 1,
-            "default_to_current_date": 0,
-            "allow_in_bindings": 1
+            "default_to_current_date": 0
+        },
+        {
+            "key": "field_grampian_ev_all_day",
+            "label": "All Day Event",
+            "name": "all_day",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_type",
+                        "operator": "==",
+                        "value": "one_off"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "ui": 1
+        },
+        {
+            "key": "field_grampian_ev_tab_recurrence",
+            "label": "Recurrence",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_type",
+                        "operator": "==",
+                        "value": "recurring"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_grampian_ev_recurrence_type",
+            "label": "Repeat Pattern",
+            "name": "recurrence_type",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_type",
+                        "operator": "==",
+                        "value": "recurring"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "weekly": "Weekly \u2014 same day(s) every week",
+                "fortnightly": "Fortnightly \u2014 same day(s) every two weeks",
+                "monthly_ordinal": "Monthly \u2014 e.g. 3rd Thursday of the month"
+            },
+            "default_value": "weekly",
+            "return_format": "value",
+            "multiple": 0,
+            "ui": 1,
+            "allow_null": 0
+        },
+        {
+            "key": "field_grampian_ev_recurrence_days",
+            "label": "Day(s) of Week",
+            "name": "recurrence_days",
+            "aria-label": "",
+            "type": "checkbox",
+            "instructions": "Which day or days does this event run?",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_type",
+                        "operator": "==",
+                        "value": "recurring"
+                    },
+                    {
+                        "field": "field_grampian_ev_recurrence_type",
+                        "operator": "==",
+                        "value": "weekly"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_grampian_ev_type",
+                        "operator": "==",
+                        "value": "recurring"
+                    },
+                    {
+                        "field": "field_grampian_ev_recurrence_type",
+                        "operator": "==",
+                        "value": "fortnightly"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "monday": "Monday",
+                "tuesday": "Tuesday",
+                "wednesday": "Wednesday",
+                "thursday": "Thursday",
+                "friday": "Friday",
+                "saturday": "Saturday",
+                "sunday": "Sunday"
+            },
+            "default_value": [],
+            "return_format": "value",
+            "layout": "horizontal",
+            "toggle": 0
+        },
+        {
+            "key": "field_grampian_ev_recurrence_ordinal",
+            "label": "Which Week",
+            "name": "recurrence_ordinal",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "e.g. select \"3rd\" for the 3rd Thursday",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_type",
+                        "operator": "==",
+                        "value": "recurring"
+                    },
+                    {
+                        "field": "field_grampian_ev_recurrence_type",
+                        "operator": "==",
+                        "value": "monthly_ordinal"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1st": "1st",
+                "2nd": "2nd",
+                "3rd": "3rd",
+                "4th": "4th",
+                "last": "Last"
+            },
+            "default_value": "1st",
+            "return_format": "value",
+            "multiple": 0,
+            "ui": 1,
+            "allow_null": 0
+        },
+        {
+            "key": "field_grampian_ev_recurrence_day",
+            "label": "Day of Week",
+            "name": "recurrence_day",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "e.g. select \"Thursday\" for the 3rd Thursday",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_type",
+                        "operator": "==",
+                        "value": "recurring"
+                    },
+                    {
+                        "field": "field_grampian_ev_recurrence_type",
+                        "operator": "==",
+                        "value": "monthly_ordinal"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "monday": "Monday",
+                "tuesday": "Tuesday",
+                "wednesday": "Wednesday",
+                "thursday": "Thursday",
+                "friday": "Friday",
+                "saturday": "Saturday",
+                "sunday": "Sunday"
+            },
+            "default_value": "monday",
+            "return_format": "value",
+            "multiple": 0,
+            "ui": 1,
+            "allow_null": 0
+        },
+        {
+            "key": "field_grampian_ev_recurrence_time",
+            "label": "Time",
+            "name": "recurrence_time",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Displayed on event cards, e.g. \"10:30\u201312:00pm\"",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_type",
+                        "operator": "==",
+                        "value": "recurring"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "e.g. 10:30\u201312:00pm"
+        },
+        {
+            "key": "field_grampian_ev_recurrence_end",
+            "label": "Repeats Until",
+            "name": "recurrence_end_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "Leave blank if the event repeats indefinitely.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_type",
+                        "operator": "==",
+                        "value": "recurring"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "d/m/Y",
+            "return_format": "Y-m-d",
+            "first_day": 1
+        },
+        {
+            "key": "field_grampian_ev_fortnightly_ref",
+            "label": "Fortnightly Reference Date",
+            "name": "fortnightly_ref_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "Enter any past date when this event ran \u2014 used to calculate which weeks it falls on.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_type",
+                        "operator": "==",
+                        "value": "recurring"
+                    },
+                    {
+                        "field": "field_grampian_ev_recurrence_type",
+                        "operator": "==",
+                        "value": "fortnightly"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "d/m/Y",
+            "return_format": "Y-m-d",
+            "first_day": 1
+        },
+        {
+            "key": "field_grampian_ev_recurring_note",
+            "label": "Schedule Summary",
+            "name": "recurring_note",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Plain-English summary shown on event listings, e.g. \"Every Tuesday, 10:30am\u201312:00pm from April to June\".",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_type",
+                        "operator": "==",
+                        "value": "recurring"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "e.g. Every Tuesday, 10:30am\u201312:00pm"
+        },
+        {
+            "key": "field_grampian_ev_tab_info",
+            "label": "Info & Booking",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
         },
         {
             "key": "field_grampian_ev_location",
@@ -57,10 +439,49 @@
                 "id": ""
             },
             "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "placeholder": ""
+        },
+        {
+            "key": "field_grampian_ev_booking_url",
+            "label": "Booking / More Info URL",
+            "name": "booking_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "External link for bookings or further information.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_grampian_ev_featured_image",
+            "label": "Event Image",
+            "name": "event_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Optional image shown on the event card and detail page.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
         },
         {
             "key": "field_grampian_ev_description",
@@ -81,116 +502,6 @@
             "media_upload": 1,
             "delay": 0,
             "default_value": ""
-        },
-        {
-            "key": "field_grampian_ev_booking_url",
-            "label": "Booking \/ More Info URL",
-            "name": "booking_url",
-            "aria-label": "",
-            "type": "url",
-            "instructions": "External link for bookings or more information.",
-            "required": 0,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_grampian_ev_featured_image",
-            "label": "Event Image",
-            "name": "event_image",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "Optional image for the event card and detail page.",
-            "required": 0,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": 0,
-            "min_height": 0,
-            "min_size": 0,
-            "max_width": 0,
-            "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
-        },
-        {
-            "key": "field_grampian_ev_all_day",
-            "label": "All Day Event",
-            "name": "all_day",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_grampian_ev_recurring",
-            "label": "Recurring",
-            "name": "recurring",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "Tick if this event repeats regularly.",
-            "required": 0,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_grampian_ev_recurring_note",
-            "label": "Recurring Schedule Note",
-            "name": "recurring_note",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "e.g. \"Every Tuesday, 10am–12pm\"",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_grampian_ev_recurring",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
         }
     ],
     "location": [
@@ -209,8 +520,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Date, time, location and booking details for events",
-    "show_in_rest": 0,
-    "display_title": "",
-    "modified": 1774890846
+    "description": "Date, time, recurrence, location and booking details for events",
+    "show_in_rest": false,
+    "modified": 1786953285
 }

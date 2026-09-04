@@ -1,0 +1,299 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   GO forms — styling for ACF's front-end acf_form() markup.
+
+   Serves both the referral form (template-referral.blade.php) and the contact
+   form block. ACF owns the markup, so this restyles its classes rather than
+   replacing them: .acf-fields / .acf-field / .acf-label / .acf-input /
+   .acf-notice / .acf-form-submit.
+
+   Unlayered, like go-prose.css, so it outranks Tailwind utilities. The form
+   sits inside article.go-page-content, whose `prose` rules would otherwise
+   restyle these inputs — the wrapper carries .not-prose for that reason.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.go-form {
+  --go-field-gap: 26px;
+}
+
+/* ── Field rows ───────────────────────────────────────────────────────── */
+
+.go-form .acf-fields > .acf-field {
+  padding: 0;
+  border: 0;
+  margin-bottom: var(--go-field-gap);
+  width: 100%;
+}
+
+.go-form .acf-fields > .acf-field:last-child {
+  margin-bottom: 0;
+}
+
+/* ACF's own tab navigation is replaced by the progress bar + Back/Next.
+   Clipped rather than display:none — ACF's tab controller checks isVisible()
+   before closing sibling tabs, so display:none silently breaks the grouping
+   and every step's fields end up on screen at once. */
+.go-form .acf-tab-wrap {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Labels and instructions ──────────────────────────────────────────── */
+
+.go-form .acf-label {
+  margin-bottom: 8px;
+}
+
+.go-form .acf-label label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  /* 18px floor — the handoff puts nothing but the footer copyright below it */
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--color-go-ink);
+  margin: 0;
+}
+
+.go-form .acf-label .description,
+.go-form .acf-field p.description {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--color-go-ink-soft);
+  margin-top: 4px;
+}
+
+/* ACF marks required with a red asterisk; give it a text equivalent so the
+   requirement is not carried by colour and glyph alone. */
+.go-form .acf-label label .acf-required {
+  color: var(--color-go-red);
+  text-decoration: none;
+}
+
+.go-form .acf-label label .acf-required::after {
+  content: " (required)";
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--color-go-ink-soft);
+}
+
+/* ── Inputs ───────────────────────────────────────────────────────────── */
+
+.go-form .acf-input input[type="text"],
+.go-form .acf-input input[type="email"],
+.go-form .acf-input input[type="tel"],
+.go-form .acf-input input[type="url"],
+.go-form .acf-input input[type="number"],
+.go-form .acf-input input[type="date"],
+.go-form .acf-input textarea,
+.go-form .acf-input select {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--color-go-ink);
+  background: #fff;
+  border: 2px solid var(--color-go-line);
+  border-radius: 12px;
+  padding: 13px 16px;
+  box-shadow: none;
+  transition: border-color 0.15s;
+}
+
+.go-form .acf-input textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.go-form .acf-input :is(input, textarea, select):hover {
+  border-color: #B9C7BC;
+}
+
+.go-form .acf-input :is(input, textarea, select):focus {
+  border-color: var(--color-go-green-deep);
+  outline: 3px solid var(--color-go-green-deep);
+  outline-offset: 2px;
+}
+
+.go-form .acf-input ::placeholder {
+  color: #6B7472;
+  opacity: 1;
+}
+
+/* ── Radios and checkboxes ────────────────────────────────────────────── */
+
+.go-form .acf-radio-list,
+.go-form .acf-checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.go-form .acf-radio-list li,
+.go-form .acf-checkbox-list li {
+  margin: 0;
+}
+
+.go-form .acf-radio-list label,
+.go-form .acf-checkbox-list label,
+.go-form .acf-true-false label {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--color-go-ink);
+  padding: 16px 18px;
+  border: 2px solid var(--color-go-line);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.go-form .acf-radio-list label:hover,
+.go-form .acf-checkbox-list label:hover,
+.go-form .acf-true-false label:hover {
+  border-color: var(--color-go-green);
+  background: var(--color-go-mint);
+}
+
+.go-form :is(input[type="radio"], input[type="checkbox"]) {
+  width: 22px;
+  height: 22px;
+  margin: 1px 0 0;
+  accent-color: var(--color-go-green-deep);
+  flex-shrink: 0;
+}
+
+.go-form :is(input[type="radio"], input[type="checkbox"]):focus-visible {
+  outline: 3px solid var(--color-go-green-deep);
+  outline-offset: 3px;
+}
+
+/* Selected option reads as selected without relying on the dot alone */
+.go-form .acf-radio-list label:has(input:checked),
+.go-form .acf-checkbox-list label:has(input:checked),
+.go-form .acf-true-false label:has(input:checked) {
+  border-color: var(--color-go-green-deep);
+  background: var(--color-go-mint);
+}
+
+/* ── Errors — never colour alone ──────────────────────────────────────── */
+
+.go-form .acf-field.acf-error :is(input, textarea, select) {
+  border-color: var(--color-go-red);
+}
+
+.go-form .acf-notice.-error,
+.go-form .acf-error-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+  background: var(--color-go-red-pale);
+  border: 2px solid var(--color-go-red);
+  border-radius: 12px;
+  color: #5E0D0D;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+
+.go-form .acf-notice.-error::before,
+.go-form .acf-error-message::before {
+  content: "!";
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-go-red);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* ── Date picker ──────────────────────────────────────────────────────── */
+
+.go-form .acf-input .hasDatepicker {
+  max-width: 260px;
+}
+
+/* ── Step controls ────────────────────────────────────────────────────── */
+
+/* html_after_fields is injected inside .acf-fields, where ACF lays its columns
+   out with floats — without clearing, this row floats up beside the last field
+   and collapses to zero width. */
+.go-form__controls {
+  clear: both;
+  float: none;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 34px;
+  padding-top: 26px;
+  border-top: 1px solid var(--color-go-line);
+}
+
+/* ACF wraps its button in .acf-form-submit; the stepper moves that wrapper
+   into the slot in this row, so it must not add spacing of its own. */
+.go-form .acf-form-submit {
+  margin: 0;
+  padding: 0;
+}
+
+.go-form .acf-form-submit .acf-button,
+.go-form .acf-form-submit input[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1;
+  padding: 17px 28px;
+  border-radius: 999px;
+  background: var(--color-go-green-deep);
+  color: #fff;
+  border: 2px solid var(--color-go-green-deep);
+  text-shadow: none;
+  box-shadow: none;
+  height: auto;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.go-form .acf-form-submit .acf-button:hover,
+.go-form .acf-form-submit input[type="submit"]:hover {
+  background: var(--color-go-green-deepest);
+  border-color: var(--color-go-green-deepest);
+}
+
+.go-form .acf-form-submit .acf-button:focus-visible,
+.go-form .acf-form-submit input[type="submit"]:focus-visible {
+  outline: 3px solid var(--color-go-green-deep);
+  outline-offset: 3px;
+}
+
+/* ACF's inline "spinner" next to the submit button */
+.go-form .acf-spinner {
+  margin-left: 10px;
+}
+
+/* Alpine has not booted on first paint; avoid a flash of every field at once. */
+.go-referral[x-cloak] .acf-fields > .acf-field {
+  visibility: hidden;
+}

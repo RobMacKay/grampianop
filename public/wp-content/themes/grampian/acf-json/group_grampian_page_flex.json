@@ -747,7 +747,7 @@
                 {
                     "key": "layout_grampian_quote",
                     "name": "quote",
-                    "label": "Quote \/ Testimonial",
+                    "label": "Quote / Testimonial",
                     "display": "block",
                     "sub_fields": [
                         {
@@ -1215,7 +1215,7 @@
                 {
                     "key": "layout_grampian_template",
                     "name": "template",
-                    "label": "Template \/ Embed",
+                    "label": "Template / Embed",
                     "display": "block",
                     "sub_fields": [
                         {
@@ -1254,6 +1254,1513 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                {
+                    "key": "layout_grampian_activities",
+                    "name": "activities",
+                    "label": "Activities",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_grampian_activities_title",
+                            "label": "Section Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "Optional heading displayed above the activity cards.",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_grampian_activities_intro",
+                            "label": "Intro Text",
+                            "name": "intro",
+                            "type": "textarea",
+                            "instructions": "Optional description displayed below the section title.",
+                            "required": 0,
+                            "rows": 3,
+                            "new_lines": "br"
+                        },
+                        {
+                            "key": "field_grampian_activities_items",
+                            "label": "Activities",
+                            "name": "activities",
+                            "type": "relationship",
+                            "instructions": "Select and order the activities to display. Drag to reorder.",
+                            "required": 0,
+                            "post_type": [
+                                "activity"
+                            ],
+                            "taxonomy": [],
+                            "filters": [
+                                "search"
+                            ],
+                            "return_format": "object",
+                            "min": "",
+                            "max": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_grampian_hero",
+                    "name": "hero",
+                    "label": "Hero Image",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_grampian_hero_image",
+                            "label": "Image",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "Large banner image. Recommended: 1200×500px or wider.",
+                            "required": 1,
+                            "return_format": "array",
+                            "preview_size": "medium",
+                            "library": "all"
+                        },
+                        {
+                            "key": "field_grampian_hero_title",
+                            "label": "Overlay Title",
+                            "name": "title",
+                            "type": "text",
+                            "instructions": "Optional title overlaid on the image. Defaults to the page title.",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_grampian_hero_copyright",
+                            "label": "Image Copyright",
+                            "name": "copyright",
+                            "type": "text",
+                            "instructions": "Optional copyright credit shown in the bottom-right corner.",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_grampian_hero_intro",
+                            "label": "Intro Text",
+                            "name": "intro",
+                            "type": "wysiwyg",
+                            "instructions": "Optional introductory paragraph displayed below the hero image.",
+                            "required": 0,
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 0,
+                            "delay": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": "1"
+                },
+                {
+                    "key": "layout_go_hero",
+                    "name": "go_hero",
+                    "label": "GO: Hero",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_go_hero_hl",
+                            "label": "Heading Level",
+                            "name": "heading_level",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "h1": "H1",
+                                "h2": "H2"
+                            },
+                            "default_value": "h1",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1,
+                            "allow_null": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_go_hero_eyebrow",
+                            "label": "Eyebrow badge text",
+                            "name": "eyebrow",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "75%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Serving the community for over 25 years",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_go_hero_heading",
+                            "label": "Heading",
+                            "name": "heading",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Empowering people to find their way forward",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_go_hero_intro",
+                            "label": "Intro paragraph",
+                            "name": "intro",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "rows": 3,
+                            "placeholder": "",
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_go_hero_image",
+                            "label": "Hero image",
+                            "name": "image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Content image — alt text required before publish.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_go_hero_primary_cta",
+                            "label": "Primary CTA",
+                            "name": "primary_cta",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        },
+                        {
+                            "key": "field_go_hero_secondary_cta",
+                            "label": "Secondary CTA",
+                            "name": "secondary_cta",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        },
+                        {
+                            "key": "field_go_hero_phone_note",
+                            "label": "Phone note",
+                            "name": "phone_note",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "HTML allowed for bold. E.g. Or call us on <strong>01467 629675</strong>",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_go_audience_router",
+                    "name": "go_audience_router",
+                    "label": "GO: Audience Router",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_go_ar_hl",
+                            "label": "Heading Level",
+                            "name": "heading_level",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "h1": "H1",
+                                "h2": "H2",
+                                "h3": "H3"
+                            },
+                            "default_value": "h2",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1,
+                            "allow_null": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_go_ar_heading",
+                            "label": "Heading",
+                            "name": "heading",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "75%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Where would you like to start?",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_go_ar_intro",
+                            "label": "Intro",
+                            "name": "intro",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "rows": 2,
+                            "placeholder": "",
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_go_ar_cards",
+                            "label": "Cards",
+                            "name": "cards",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "button_label": "Add card",
+                            "min": 1,
+                            "max": 8,
+                            "sub_fields": [
+                                {
+                                    "key": "field_go_ar_card_number",
+                                    "label": "Number",
+                                    "name": "number",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "10%",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_go_ar_card_accent",
+                                    "label": "Accent",
+                                    "name": "accent",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "Green = support/identity. Blue = referral/admin. Red = giving.",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "20%",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "green": "Green",
+                                        "blue": "Blue",
+                                        "red": "Red"
+                                    },
+                                    "default_value": "green",
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "ui": 1,
+                                    "allow_null": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_go_ar_card_title",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "70%",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_go_ar_card_text",
+                                    "label": "Body",
+                                    "name": "text",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "rows": 2,
+                                    "placeholder": "",
+                                    "new_lines": ""
+                                },
+                                {
+                                    "key": "field_go_ar_card_label",
+                                    "label": "CTA label (no arrow)",
+                                    "name": "label",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50%",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_go_ar_card_link",
+                                    "label": "Link",
+                                    "name": "link",
+                                    "aria-label": "",
+                                    "type": "link",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50%",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_go_service_grid",
+                    "name": "go_service_grid",
+                    "label": "GO: Service Grid",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_go_sg_hl",
+                            "label": "Heading Level",
+                            "name": "heading_level",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "h2": "H2",
+                                "h3": "H3"
+                            },
+                            "default_value": "h2",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1,
+                            "allow_null": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_go_sg_eyebrow",
+                            "label": "Eyebrow",
+                            "name": "eyebrow",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "75%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "WHAT WE DO",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_go_sg_heading",
+                            "label": "Heading",
+                            "name": "heading",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Groups and services running right now",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_go_sg_cta",
+                            "label": "Section CTA",
+                            "name": "cta",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        },
+                        {
+                            "key": "field_go_sg_highlight_panels",
+                            "label": "Highlight panels",
+                            "name": "highlight_panels",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "Wide panels shown below the circle grid (e.g. Information & Guidance, Financial First Aid).",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "button_label": "Add panel",
+                            "min": 0,
+                            "max": 4,
+                            "sub_fields": [
+                                {
+                                    "key": "field_go_sg_panel_title",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_go_sg_panel_text",
+                                    "label": "Body",
+                                    "name": "text",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "rows": 2,
+                                    "placeholder": "",
+                                    "new_lines": ""
+                                },
+                                {
+                                    "key": "field_go_sg_panel_link",
+                                    "label": "Link",
+                                    "name": "link",
+                                    "aria-label": "",
+                                    "type": "link",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_go_impact_band",
+                    "name": "go_impact_band",
+                    "label": "GO: Impact Band",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_go_ib_hl",
+                            "label": "Heading Level",
+                            "name": "heading_level",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "h2": "H2",
+                                "h3": "H3"
+                            },
+                            "default_value": "h2",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1,
+                            "allow_null": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_go_ib_heading",
+                            "label": "Heading",
+                            "name": "heading",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "75%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "25 years of people helping people in Aberdeenshire",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_go_ib_image",
+                            "label": "Image",
+                            "name": "image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Content image — alt text required before publish.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_go_ib_intro",
+                            "label": "Intro paragraph",
+                            "name": "intro",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "rows": 3,
+                            "placeholder": "",
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_go_ib_stats",
+                            "label": "Stats",
+                            "name": "stats",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "Figures shown large on the green band. Keep to 3–4.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "button_label": "Add stat",
+                            "min": 1,
+                            "max": 6,
+                            "sub_fields": [
+                                {
+                                    "key": "field_go_ib_stat_figure",
+                                    "label": "Figure",
+                                    "name": "figure",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "E.g. 25+ or £0",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_go_ib_stat_label",
+                                    "label": "Label",
+                                    "name": "label",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_go_ib_quote",
+                            "label": "Quote",
+                            "name": "quote",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "Include quotation marks.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "rows": 3,
+                            "placeholder": "",
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_go_ib_attribution",
+                            "label": "Attribution",
+                            "name": "attribution",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "E.g. Day Services member",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_go_events_strip",
+                    "name": "go_events_strip",
+                    "label": "GO: Events Strip",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_go_es_hl",
+                            "label": "Heading Level",
+                            "name": "heading_level",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "h2": "H2",
+                                "h3": "H3"
+                            },
+                            "default_value": "h2",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1,
+                            "allow_null": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_go_es_heading",
+                            "label": "Heading",
+                            "name": "heading",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "75%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "What's on this week",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_go_es_archive_link",
+                            "label": "Archive link",
+                            "name": "archive_link",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        },
+                        {
+                            "key": "field_go_es_limit",
+                            "label": "Number of events",
+                            "name": "limit",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 3,
+                            "min": 1,
+                            "max": 6,
+                            "step": 1,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_go_es_fallback",
+                            "label": "Fallback sessions",
+                            "name": "fallback_sessions",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "Shown when no future events exist in WordPress. Use for recurring weekly sessions.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "button_label": "Add session",
+                            "min": 0,
+                            "max": 6,
+                            "sub_fields": [
+                                {
+                                    "key": "field_go_es_fb_weekday",
+                                    "label": "Weekday",
+                                    "name": "weekday",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "3 letters, e.g. WED",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_go_es_fb_day",
+                                    "label": "Day number",
+                                    "name": "day",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_go_es_fb_title",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_go_es_fb_detail",
+                                    "label": "Detail",
+                                    "name": "detail",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "Time · Short description",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_go_get_involved",
+                    "name": "go_get_involved",
+                    "label": "GO: Get Involved",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_go_gi_hl",
+                            "label": "Heading Level",
+                            "name": "heading_level",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "h2": "H2",
+                                "h3": "H3"
+                            },
+                            "default_value": "h2",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1,
+                            "allow_null": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_go_gi_heading",
+                            "label": "Heading",
+                            "name": "heading",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "75%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Two ways to make a difference",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_go_gi_panels",
+                            "label": "Panels",
+                            "name": "panels",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "Exactly two panels recommended: green (volunteering) first, red (donate) second.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "button_label": "Add panel",
+                            "min": 1,
+                            "max": 4,
+                            "sub_fields": [
+                                {
+                                    "key": "field_go_gi_panel_theme",
+                                    "label": "Theme",
+                                    "name": "theme",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "Green = white card with green CTA. Red = dark red card.",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "25%",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "green": "Green",
+                                        "red": "Red"
+                                    },
+                                    "default_value": "green",
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "ui": 1,
+                                    "allow_null": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "create_options": 0,
+                                    "save_options": 0
+                                },
+                                {
+                                    "key": "field_go_gi_panel_eyebrow",
+                                    "label": "Eyebrow",
+                                    "name": "eyebrow",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "75%",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_go_gi_panel_title",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_go_gi_panel_text",
+                                    "label": "Body",
+                                    "name": "text",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "rows": 3,
+                                    "placeholder": "",
+                                    "new_lines": ""
+                                },
+                                {
+                                    "key": "field_go_gi_panel_note",
+                                    "label": "Note / small print",
+                                    "name": "note",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "E.g. Currently recruiting · Inverurie",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_go_gi_panel_cta",
+                                    "label": "CTA",
+                                    "name": "cta",
+                                    "aria-label": "",
+                                    "type": "link",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_go_logo_wall",
+                    "name": "go_logo_wall",
+                    "label": "GO: Logo Wall",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_go_lw_hl",
+                            "label": "Heading Level",
+                            "name": "heading_level",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "h2": "H2",
+                                "h3": "H3"
+                            },
+                            "default_value": "h2",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1,
+                            "allow_null": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_go_lw_heading",
+                            "label": "Heading",
+                            "name": "heading",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "75%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Funded and supported by",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_go_lw_logos",
+                            "label": "Logos",
+                            "name": "logos",
+                            "aria-label": "",
+                            "type": "gallery",
+                            "instructions": "Add each funder logo. Every image MUST have alt text (the funder name) before publish.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min": "",
+                            "max": "",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "insert": "append",
+                            "preview_size": "thumbnail"
+                        },
+                        {
+                            "key": "field_go_lw_link",
+                            "label": "Archive link",
+                            "name": "link",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "layout_go_visit",
+                    "name": "go_visit",
+                    "label": "GO: Visit",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_go_vs_hl",
+                            "label": "Heading Level",
+                            "name": "heading_level",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "25%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "h2": "H2",
+                                "h3": "H3"
+                            },
+                            "default_value": "h2",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "ui": 1,
+                            "allow_null": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_go_vs_heading",
+                            "label": "Heading",
+                            "name": "heading",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "75%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Come and see us",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_go_vs_body",
+                            "label": "Body",
+                            "name": "body",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "Address and a line about access.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "54 West High Street, Inverurie, Aberdeenshire, AB51 3QR. Step-free access from the street, and the kettle is always on.",
+                            "maxlength": "",
+                            "rows": 3,
+                            "placeholder": "",
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_go_vs_image",
+                            "label": "Map or shopfront photo",
+                            "name": "image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Needs alt text unless purely decorative.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_go_vs_primary_cta",
+                            "label": "Primary button",
+                            "name": "primary_cta",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "Defaults to a tel: link built from the site phone number.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        },
+                        {
+                            "key": "field_go_vs_secondary_cta",
+                            "label": "Secondary button",
+                            "name": "secondary_cta",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50%",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             ]
         }
@@ -1281,5 +2788,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1774985627
+    "modified": 1786901344
 }
