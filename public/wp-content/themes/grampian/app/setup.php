@@ -9,7 +9,6 @@ namespace App;
 use App\Forms\BookingAdmin;
 use App\Forms\BookingForm;
 use App\Forms\BookingNotifier;
-use App\Forms\ContactFormHandler;
 use App\Forms\ContactNotifier;
 use App\Forms\FormPages;
 use App\Forms\ReferralNotifier;
@@ -22,13 +21,6 @@ ContactNotifier::init();
 BookingForm::init();
 BookingNotifier::init();
 BookingAdmin::init();
-
-/**
- * Legacy contact form handler, still used by template-contact.blade.php.
- * Retire once the Contact page is switched over to the Contact Form block.
- */
-add_action('admin_post_submit_contact', [ContactFormHandler::class, 'handle']);
-add_action('admin_post_nopriv_submit_contact', [ContactFormHandler::class, 'handle']);
 
 /**
  * Boot ACF's front-end form handler.

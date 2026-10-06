@@ -12,27 +12,70 @@
    ───────────────────────────────────────────────────────────────────────── */
 
 .go-form {
-  --go-field-gap: 26px;
+  --go-field-gap: 24px;
 }
 
 /* ── Field rows ───────────────────────────────────────────────────────── */
 
-.go-form .acf-fields > .acf-field {
+/* ACF lays fields out with floats and an inline `style="width:50%"`, which puts
+   half-width fields flush against each other with no gutter, and adds its own
+   border-top / border-left between fields. Replace that with a wrapping flex
+   row: one gap value spaces every field, horizontally and vertically.
+   .acf-fields is doubled to outrank ACF's [data-width] selectors without
+   depending on stylesheet order. */
+.go-form .acf-fields.acf-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--go-field-gap);
+}
+
+.go-form .acf-fields.acf-fields > .acf-field {
+  float: none;
+  clear: none;
+  flex: 1 1 100%;
+  min-width: 0;
+  margin: 0;
   padding: 0;
   border: 0;
-  margin-bottom: var(--go-field-gap);
-  width: 100%;
+  /* beats the inline width ACF writes from the field's width setting */
+  width: auto !important;
+  /* Fields in a row stretch to the tallest one; pinning each input to the bottom
+     keeps side-by-side inputs level when only one has helper text. */
+  display: flex;
+  flex-direction: column;
 }
 
-.go-form .acf-fields > .acf-field:last-child {
-  margin-bottom: 0;
+.go-form .acf-fields.acf-fields > .acf-field > .acf-input {
+  margin-top: auto;
 }
 
-/* ACF's own tab navigation is replaced by the progress bar + Back/Next.
+/* Column widths: basis = w% of the row minus its share of the gaps. */
+.go-form .acf-fields.acf-fields > .acf-field[data-width] {
+  flex: 0 0 calc(var(--w) * 1% - var(--go-field-gap) * (100 - var(--w)) / 100);
+}
+.go-form .acf-fields > .acf-field[data-width="25"] { --w: 25; }
+.go-form .acf-fields > .acf-field[data-width="33"] { --w: 33; }
+.go-form .acf-fields > .acf-field[data-width="34"] { --w: 34; }
+.go-form .acf-fields > .acf-field[data-width="50"] { --w: 50; }
+.go-form .acf-fields > .acf-field[data-width="66"] { --w: 66; }
+.go-form .acf-fields > .acf-field[data-width="67"] { --w: 67; }
+.go-form .acf-fields > .acf-field[data-width="75"] { --w: 75; }
+
+/* One column on phones: two half-width fields side by side are too narrow to
+   type in at 18px. */
+@media (max-width: 640px) {
+  .go-form .acf-fields.acf-fields > .acf-field[data-width] {
+    flex: 1 1 100%;
+  }
+}
+
+/* ACF's tab navigation is replaced by the progress bar + Back/Next, and the
+   tab field's own wrapper must not take a slot in the flex row.
    Clipped rather than display:none — ACF's tab controller checks isVisible()
    before closing sibling tabs, so display:none silently breaks the grouping
    and every step's fields end up on screen at once. */
-.go-form .acf-tab-wrap {
+.go-form .acf-tab-wrap,
+.go-form .acf-fields > .acf-field-tab {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -42,6 +85,35 @@
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
+}
+
+/* Section headings — ACF Message fields tagged .go-form__section. The message
+   itself is empty; the label is the heading. */
+.go-form .acf-fields.acf-fields > .go-form__section {
+  flex-basis: 100%;
+  margin-top: 8px;
+  padding-top: 28px;
+  border-top: 1px solid var(--color-go-line);
+  /* sit closer to the fields it introduces than to the previous group */
+  margin-bottom: -8px;
+}
+
+.go-form .acf-fields.acf-fields > .go-form__section--first {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.go-form .go-form__section .acf-label {
+  margin: 0;
+}
+
+.go-form .go-form__section .acf-label label {
+  font-size: 22px;
+}
+
+.go-form .go-form__section .acf-input {
+  display: none;
 }
 
 /* ── Labels and instructions ──────────────────────────────────────────── */
@@ -101,13 +173,13 @@
   background: #fff;
   border: 2px solid var(--color-go-line);
   border-radius: 12px;
-  padding: 13px 16px;
+  padding: 14px 16px;
   box-shadow: none;
   transition: border-color 0.15s;
 }
 
 .go-form .acf-input textarea {
-  min-height: 150px;
+  min-height: 140px;
   resize: vertical;
 }
 
@@ -118,7 +190,8 @@
 .go-form .acf-input :is(input, textarea, select):focus {
   border-color: var(--color-go-green-deep);
   outline: 3px solid var(--color-go-green-deep);
-  outline-offset: 2px;
+  /* tight enough not to collide with the next field in a half-width row */
+  outline-offset: 1px;
 }
 
 .go-form .acf-input ::placeholder {
@@ -153,6 +226,7 @@
   line-height: 1.5;
   color: var(--color-go-ink);
   padding: 16px 18px;
+  background: #fff;
   border: 2px solid var(--color-go-line);
   border-radius: 14px;
   cursor: pointer;
@@ -191,6 +265,21 @@
 
 .go-form .acf-field.acf-error :is(input, textarea, select) {
   border-color: var(--color-go-red);
+}
+
+.go-form .acf-field.acf-error .acf-label label {
+  color: var(--color-go-red);
+}
+
+/* The per-field message sits between the label and the input; keep it snug. */
+.go-form .acf-field .acf-notice.-error {
+  margin: 0 0 12px;
+}
+
+.go-form .acf-notice.-error p,
+.go-form .acf-error-message p {
+  margin: 0;
+  padding: 0;
 }
 
 .go-form .acf-notice.-error,
@@ -233,27 +322,41 @@
 
 /* ── Step controls ────────────────────────────────────────────────────── */
 
-/* html_after_fields is injected inside .acf-fields, where ACF lays its columns
-   out with floats — without clearing, this row floats up beside the last field
-   and collapses to zero width. */
+/* html_after_fields is injected inside .acf-fields — now a flex row, so the
+   controls take a full-width line of their own. The flex gap already supplies
+   most of the space above, hence the small margin. */
 .go-form__controls {
-  clear: both;
-  float: none;
+  flex: 1 1 100%;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 16px;
-  margin-top: 34px;
+  margin-top: 10px;
   padding-top: 26px;
   border-top: 1px solid var(--color-go-line);
 }
 
 /* ACF wraps its button in .acf-form-submit; the stepper moves that wrapper
-   into the slot in this row, so it must not add spacing of its own. */
+   into the slot in the controls row, so it must not add spacing of its own. */
 .go-form .acf-form-submit {
   margin: 0;
   padding: 0;
+}
+
+/* Forms without a stepper (contact, booking) leave the submit as a direct child
+   of the form, straight under the last field — give it room. */
+.go-form > .acf-form-submit {
+  margin-top: 32px;
+}
+
+@media (max-width: 640px) {
+  .go-form:not(:has(.go-form__controls)) .acf-form-submit,
+  .go-form:not(:has(.go-form__controls)) .acf-form-submit :is(.acf-button, input[type="submit"]) {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .go-form .acf-form-submit .acf-button,

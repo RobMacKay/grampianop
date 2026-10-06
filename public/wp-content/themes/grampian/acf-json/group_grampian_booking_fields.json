@@ -13,7 +13,7 @@
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
-                "class": "",
+                "class": "go-form__section go-form__section--first",
                 "id": ""
             },
             "message": "",
@@ -151,7 +151,7 @@
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
-                "class": "",
+                "class": "go-form__section",
                 "id": ""
             },
             "message": "",
@@ -189,7 +189,7 @@
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
-                "class": "",
+                "class": "go-form__section",
                 "id": ""
             },
             "message": "",
@@ -347,7 +347,7 @@
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
-                "class": "",
+                "class": "go-form__section",
                 "id": ""
             },
             "message": "",
@@ -396,5 +396,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1791294363
+    "modified": 1791294559
 }

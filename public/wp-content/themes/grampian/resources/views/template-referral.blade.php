@@ -72,7 +72,7 @@
           >
 
             {{-- Progress --}}
-            <div class="px-[32px] pt-8 pb-6 border-b border-go-line">
+            <div class="px-6 sm:px-8 md:px-10 pt-8 pb-6 border-b border-go-line">
               <div class="flex flex-wrap items-baseline justify-between gap-2 mb-3">
                 <p class="font-heading font-bold text-[18px] text-go-ink focus:outline-none"
                    x-ref="stepHeading" tabindex="-1" aria-live="polite"
@@ -97,7 +97,7 @@
                  The step controls go in via html_after_fields so they sit inside
                  the <form> — the submit button is relocated into the slot below
                  and must stay within the form to submit it. --}}
-            <div class="px-[32px] py-8">
+            <div class="px-6 sm:px-8 md:px-10 py-8">
               @php
                 $controls = <<<'HTML'
                 <div class="go-form__controls">
