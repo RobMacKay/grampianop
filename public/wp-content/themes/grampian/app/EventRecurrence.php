@@ -36,14 +36,63 @@ class EventRecurrence
 
     public static function nextCard(int $post_id): ?array
     {
-        $event_type = get_field('event_type', $post_id) ?: 'one_off';
-        $today      = new DateTimeImmutable('today');
+        $today = new DateTimeImmutable('today');
 
-        if ($event_type === 'one_off') {
-            return self::oneOffCard($post_id, $today);
+        return self::isRecurring($post_id)
+            ? self::recurringCard($post_id, $today)
+            : self::oneOffCard($post_id, $today);
+    }
+
+    /**
+     * The one place that decides whether an event repeats. The Event Type radio
+     * is the source of truth; the retired "Repeating Event" tick box is only
+     * consulted for old events saved before Event Type existed, so a stale tick
+     * can never turn a one-off event into a recurring one.
+     */
+    public static function isRecurring(int $post_id): bool
+    {
+        $type = get_post_meta($post_id, 'event_type', true);
+
+        if ($type === 'recurring' || $type === 'one_off') {
+            return $type === 'recurring';
         }
 
-        return self::recurringCard($post_id, $today);
+        return (bool) get_post_meta($post_id, 'recurring', true);
+    }
+
+    /**
+     * Plain-English schedule for a recurring event, e.g. "Every Wednesday · 10:30–12:00"
+     * or "3rd Thursday of the month". The editor's own summary wins when given.
+     */
+    public static function scheduleLabel(int $post_id): string
+    {
+        $note = trim((string) get_field('recurring_note', $post_id));
+
+        if ($note !== '') {
+            return $note;
+        }
+
+        $days = array_map(
+            fn ($d) => self::DAY_NAMES[$d] ?? ucfirst((string) $d),
+            (array) (get_field('recurrence_days', $post_id) ?: [])
+        );
+        $list = count($days) > 1
+            ? implode(', ', array_slice($days, 0, -1)) . ' and ' . end($days)
+            : (string) ($days[0] ?? '');
+
+        $label = match (get_field('recurrence_type', $post_id) ?: 'weekly') {
+            'fortnightly'     => $list ? 'Every other ' . $list : 'Fortnightly',
+            'monthly_ordinal' => sprintf(
+                '%s %s of the month',
+                get_field('recurrence_ordinal', $post_id) === 'last' ? 'Last' : (get_field('recurrence_ordinal', $post_id) ?: '1st'),
+                self::DAY_NAMES[get_field('recurrence_day', $post_id) ?: 'monday'] ?? 'Monday'
+            ),
+            default           => $list ? 'Every ' . $list : 'Weekly',
+        };
+
+        $time = trim((string) get_field('recurrence_time', $post_id));
+
+        return $time !== '' ? $label . ' · ' . $time : $label;
     }
 
     // ── One-off ──────────────────────────────────────────────────────────────

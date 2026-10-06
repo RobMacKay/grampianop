@@ -10,12 +10,9 @@
       $description = get_field('description');
       $booking_url = get_field('booking_url');
       $all_day     = get_field('all_day');
-      $recurring        = get_field('recurring');
-      $rec_type         = get_field('recurrence_type');
-      $rec_days         = get_field('recurrence_days') ?: [];
-      $rec_time         = get_field('recurrence_time');
-      $rec_end          = get_field('recurrence_end_date');
-      $rec_note         = get_field('recurring_note');
+      $recurring        = \App\EventRecurrence::isRecurring(get_the_ID());
+      $schedule         = $recurring ? \App\EventRecurrence::scheduleLabel(get_the_ID()) : '';
+      $rec_end          = $recurring ? get_field('recurrence_end_date') : null;
       $event_img        = get_field('event_image');
       $bookable         = \App\Forms\BookingForm::isBookable(get_the_ID());
       $is_full          = $bookable && \App\Forms\BookingSpaces::isFull(get_the_ID());
@@ -23,8 +20,10 @@
       $rec_end_str = $rec_end ? date('j F Y', strtotime($rec_end)) : null;
 
       $date_fmt  = $all_day ? 'l j F Y' : 'l j F Y \a\t g:ia';
-      $start_str = $start_date ? date($date_fmt, strtotime($start_date)) : null;
-      $end_str   = $end_date   ? date($date_fmt, strtotime($end_date))   : null;
+      // A recurring event can still carry dates saved before it was switched over,
+      // so only a one-off event shows a date.
+      $start_str = (! $recurring && $start_date) ? date($date_fmt, strtotime($start_date)) : null;
+      $end_str   = (! $recurring && $end_date)   ? date($date_fmt, strtotime($end_date))   : null;
     @endphp
 
     <article class="mx-auto max-w-screen-xl px-4 py-10">
@@ -68,19 +67,10 @@
           @if($recurring)
             <div>
               <dt class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Repeats</dt>
-              <dd class="mt-1 font-medium text-gray-900 capitalize">
-                {{ $rec_type ?: 'Regularly' }}
-                @if($rec_days)
-                  — {{ implode(', ', array_map('ucfirst', $rec_days)) }}
-                @endif
-                @if($rec_time)
-                  <span class="block text-sm text-gray-500">{{ $rec_time }}</span>
-                @endif
+              <dd class="mt-1 font-medium text-gray-900">
+                {{ $schedule }}
                 @if($rec_end_str)
                   <span class="block text-sm text-gray-500">Until {{ $rec_end_str }}</span>
-                @endif
-                @if($rec_note)
-                  <span class="block text-sm text-gray-500 mt-1">{{ $rec_note }}</span>
                 @endif
               </dd>
             </div>

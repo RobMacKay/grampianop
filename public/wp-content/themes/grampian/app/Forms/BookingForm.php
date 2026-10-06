@@ -49,7 +49,7 @@ class BookingForm
             return false;
         }
 
-        if ($type === 'event' && (get_field('event_type', $id) ?: 'one_off') === 'one_off') {
+        if ($type === 'event' && ! EventRecurrence::isRecurring($id)) {
             return EventRecurrence::nextCard($id) !== null;
         }
 
@@ -64,7 +64,7 @@ class BookingForm
     {
         $id = self::$currentItem;
 
-        if ($id && get_post_type($id) === 'event' && (get_field('event_type', $id) ?: 'one_off') === 'one_off') {
+        if ($id && BookingSpaces::isOneOff($id)) {
             return false;
         }
 

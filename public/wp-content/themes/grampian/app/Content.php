@@ -111,48 +111,66 @@ class Content
      */
     public static function upcomingEvents(int $limit = 3): array
     {
-        $limit = max(1, $limit);
-        $today = wp_date('Y-m-d');
-        $cards = [];
+        $cards = array_column(self::eventSchedule(), 'card');
 
-        $oneOff = get_posts([
-            'post_type'      => 'event',
-            'post_status'    => 'publish',
-            'posts_per_page' => $limit * 3, // fetch extra; trimmed after the merge
-            'fields'         => 'ids',
-            'no_found_rows'  => true,
-            'meta_key'       => 'start_date',
-            'orderby'        => 'meta_value',
-            'order'          => 'ASC',
-            'meta_query'     => [
-                'relation' => 'AND',
-                ['key' => 'event_type', 'value' => 'one_off', 'compare' => '='],
-                ['key' => 'start_date', 'value' => $today, 'compare' => '>=', 'type' => 'DATE'],
-            ],
-        ]);
+        usort($cards, fn ($a, $b) => $a['sort_ts'] <=> $b['sort_ts']);
 
-        $recurring = get_posts([
+        return array_slice($cards, 0, max(1, $limit));
+    }
+
+    /**
+     * Every published event that still has a next occurrence, split the way the
+     * events archive shows them: regular (recurring) events by title, and
+     * one-off events soonest first.
+     *
+     * Deliberately loads all events and asks EventRecurrence about each, rather
+     * than filtering on meta in SQL: whether an event repeats depends on Event
+     * Type with a fallback for old events, which a meta query cannot express
+     * without listing some events twice or not at all. A small charity site has
+     * dozens of events, not thousands.
+     *
+     * @return array{recurring: array<int, int>, one_off: array<int, int>}
+     */
+    public static function eventGroups(): array
+    {
+        $recurring = [];
+        $oneOff    = [];
+
+        foreach (self::eventSchedule() as $id => $row) {
+            if ($row['recurring']) {
+                $recurring[$id] = get_the_title($id);
+            } else {
+                $oneOff[$id] = $row['card']['sort_ts'];
+            }
+        }
+
+        natcasesort($recurring);
+        asort($oneOff);
+
+        return ['recurring' => array_keys($recurring), 'one_off' => array_keys($oneOff)];
+    }
+
+    /** @return array<int, array{recurring: bool, card: array<string, mixed>}> */
+    private static function eventSchedule(): array
+    {
+        $ids = get_posts([
             'post_type'      => 'event',
             'post_status'    => 'publish',
             'posts_per_page' => -1,
             'fields'         => 'ids',
             'no_found_rows'  => true,
-            'meta_query'     => [
-                'relation' => 'OR',
-                ['key' => 'event_type', 'value' => 'recurring', 'compare' => '='],
-                // Backwards compat: older posts saved with a true_false `recurring` field
-                ['key' => 'recurring', 'value' => '1', 'compare' => '='],
-            ],
         ]);
 
-        foreach (array_merge($oneOff, $recurring) as $id) {
-            if ($card = EventRecurrence::nextCard((int) $id)) {
-                $cards[] = $card;
+        $rows = [];
+
+        foreach ($ids as $id) {
+            $id = (int) $id;
+
+            if ($card = EventRecurrence::nextCard($id)) {
+                $rows[$id] = ['recurring' => EventRecurrence::isRecurring($id), 'card' => $card];
             }
         }
 
-        usort($cards, fn ($a, $b) => $a['sort_ts'] <=> $b['sort_ts']);
-
-        return array_slice($cards, 0, $limit);
+        return $rows;
     }
 }

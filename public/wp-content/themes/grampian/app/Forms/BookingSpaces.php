@@ -2,6 +2,8 @@
 
 namespace App\Forms;
 
+use App\EventRecurrence;
+
 /**
  * Places available on a bookable event or activity.
  *
@@ -38,8 +40,7 @@ class BookingSpaces
 
     public static function isOneOff(int $item): bool
     {
-        return get_post_type($item) === 'event'
-            && (get_field('event_type', $item) ?: 'one_off') === 'one_off';
+        return get_post_type($item) === 'event' && ! EventRecurrence::isRecurring($item);
     }
 
     /**
