@@ -121,7 +121,7 @@ class ReferralNotifier
             ? sprintf('New self-referral: %s', $name)
             : sprintf('New referral: %s', $name);
 
-        wp_mail($recipients, $subject, $body, self::headers());
+        wp_mail($recipients, $subject, $body, Mail::headers());
     }
 
     /**
@@ -153,7 +153,7 @@ class ReferralNotifier
             $email,
             'We have received your referral — Grampian Opportunities',
             $body,
-            self::headers()
+            Mail::headers()
         );
     }
 
@@ -196,17 +196,5 @@ class ReferralNotifier
         ]);
 
         return $pages ? (int) $pages[0] : null;
-    }
-
-    /** @return array<int, string> */
-    private static function headers(): array
-    {
-        $domain = wp_parse_url(home_url(), PHP_URL_HOST) ?: 'localhost';
-        $domain = preg_replace('/^www\./', '', $domain);
-
-        return [
-            'Content-Type: text/html; charset=UTF-8',
-            sprintf('From: %s <no-reply@%s>', get_bloginfo('name'), $domain),
-        ];
     }
 }

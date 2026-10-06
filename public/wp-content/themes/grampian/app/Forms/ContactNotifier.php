@@ -85,7 +85,7 @@ class ContactNotifier
             esc_url(admin_url('post.php?post=' . $post_id . '&action=edit'))
         );
 
-        $headers = self::headers();
+        $headers = Mail::headers();
 
         // Replying in a mail client should go to the sender, not the site.
         if (is_email($email)) {
@@ -121,17 +121,5 @@ class ContactNotifier
         $emails = array_values(array_filter(array_map('trim', explode(',', $configured)), 'is_email'));
 
         return (array) apply_filters('go_contact_recipients', $emails, $post_id);
-    }
-
-    /** @return array<int, string> */
-    private static function headers(): array
-    {
-        $domain = wp_parse_url(home_url(), PHP_URL_HOST) ?: 'localhost';
-        $domain = preg_replace('/^www\./', '', $domain);
-
-        return [
-            'Content-Type: text/html; charset=UTF-8',
-            sprintf('From: %s <no-reply@%s>', get_bloginfo('name'), $domain),
-        ];
     }
 }

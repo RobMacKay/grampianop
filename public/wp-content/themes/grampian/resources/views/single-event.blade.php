@@ -17,6 +17,7 @@
       $rec_end          = get_field('recurrence_end_date');
       $rec_note         = get_field('recurring_note');
       $event_img        = get_field('event_image');
+      $bookable         = \App\Forms\BookingForm::isBookable(get_the_ID());
 
       $rec_end_str = $rec_end ? date('j F Y', strtotime($rec_end)) : null;
 
@@ -91,7 +92,11 @@
             </div>
           @endif
 
-          @if($booking_url)
+          @if($bookable)
+            <a href="#book" class="block w-full text-center px-[26px] py-4 rounded-full bg-go-green-deep text-white font-heading font-bold text-[17px] leading-none hover:bg-go-green-deepest transition-colors">
+              Book a place
+            </a>
+          @elseif($booking_url)
             <a href="{{ $booking_url }}" target="_blank" rel="noopener" class="btn btn--primary w-full text-center block">
               Book / More Info
             </a>
@@ -103,5 +108,13 @@
         </aside>
       </div>
     </article>
+
+    @if($bookable || \App\Forms\BookingForm::submitted())
+      @include('partials.booking-form', [
+        'item_id'    => get_the_ID(),
+        'form_id'    => 'booking-form-' . get_the_ID(),
+        'is_preview' => false,
+      ])
+    @endif
   @endwhile
 @endsection

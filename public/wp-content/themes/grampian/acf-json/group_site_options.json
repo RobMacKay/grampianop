@@ -29,6 +29,15 @@
             "default_value": "info@grampianopportunities.org.uk"
         },
         {
+            "key": "field_grampian_opt_bookings_email",
+            "label": "Bookings Email",
+            "name": "bookings_email",
+            "type": "text",
+            "instructions": "Where booking notifications go (comma-separated). Falls back to the main email.",
+            "required": 0,
+            "default_value": ""
+        },
+        {
             "key": "field_grampian_opt_address",
             "label": "Address",
             "name": "address",
@@ -172,6 +181,32 @@
             "required": 0,
             "rows": 6,
             "new_lines": ""
+        },
+        {
+            "key": "field_grampian_opt_tab_spam",
+            "label": "Spam protection",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_grampian_opt_turnstile_site_key",
+            "label": "Turnstile Site Key",
+            "name": "turnstile_site_key",
+            "type": "text",
+            "required": 0,
+            "default_value": "",
+            "instructions": "Cloudflare Turnstile protects the contact, referral and booking forms. Leave both keys empty to switch it off. Can instead be set with GO_TURNSTILE_SITE_KEY in wp-config.php."
+        },
+        {
+            "key": "field_grampian_opt_turnstile_secret_key",
+            "label": "Turnstile Secret Key",
+            "name": "turnstile_secret_key",
+            "type": "password",
+            "required": 0,
+            "default_value": "",
+            "instructions": "Prefer setting GO_TURNSTILE_SECRET_KEY in wp-config.php so the secret is not stored in the database."
         }
     ],
     "location": [
@@ -192,5 +227,5 @@
     "active": true,
     "description": "Global site settings: contact info, links, branding, scripts",
     "show_in_rest": false,
-    "modified": 1743293940
+    "modified": 1791294692
 }

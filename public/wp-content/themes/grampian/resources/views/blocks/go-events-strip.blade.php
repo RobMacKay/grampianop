@@ -2,87 +2,10 @@
   $heading          = $block['heading']          ?? "What's on this week";
   $heading_level    = $block['heading_level']    ?? 'h2';
   $archive_link     = $block['archive_link']     ?? ['url' => '/events', 'title' => 'Full events calendar', 'target' => ''];
-  $limit            = $block['limit']            ?? 3;
-  $fallback_sessions = !empty($block['fallback_sessions']) ? $block['fallback_sessions'] : [
-    ['weekday' => 'WED', 'day' => '•',  'title' => 'Community Café',    'detail' => '10:30–12:00 · Home bakes and coffee, every second Wednesday.'],
-    ['weekday' => 'THU', 'day' => '•',  'title' => 'Bingo afternoon',   'detail' => '13:00–14:00 · Every Thursday. Just turn up.'],
-    ['weekday' => 'WED', 'day' => '•',  'title' => 'Art Group',         'detail' => '13:30–15:30 · All materials provided, no experience needed.'],
-  ];
+  $limit            = (int) ($block['limit'] ?? 3);
+  $empty_message    = $block['empty_message'] ?? 'There are no upcoming events right now — check back soon.';
 
-  // Pull live events — one-off (start_date >= today) and active recurring
-  $events    = [];
-  $today_str = date('Y-m-d');
-
-  // One-off events upcoming from today
-  $query_oneoff = new WP_Query([
-    'post_type'      => 'event',
-    'posts_per_page' => (int) $limit * 3, // fetch extra; we'll trim after merge
-    'post_status'    => 'publish',
-    'meta_query'     => [
-      'relation' => 'AND',
-      [
-        'key'     => 'event_type',
-        'value'   => 'one_off',
-        'compare' => '=',
-      ],
-      [
-        'key'     => 'start_date',
-        'value'   => $today_str,
-        'compare' => '>=',
-        'type'    => 'DATE',
-      ],
-    ],
-    'orderby'  => 'meta_value',
-    'meta_key' => 'start_date',
-    'order'    => 'ASC',
-  ]);
-
-  if ($query_oneoff->have_posts()) {
-    while ($query_oneoff->have_posts()) {
-      $query_oneoff->the_post();
-      $card = \App\EventRecurrence::nextCard(get_the_ID());
-      if ($card) $events[] = $card;
-    }
-    wp_reset_postdata();
-  }
-
-  // Recurring events that haven't ended yet
-  $query_recurring = new WP_Query([
-    'post_type'      => 'event',
-    'posts_per_page' => -1,
-    'post_status'    => 'publish',
-    'meta_query'     => [
-      'relation' => 'OR',
-      [
-        'key'     => 'event_type',
-        'value'   => 'recurring',
-        'compare' => '=',
-      ],
-      // Backwards compat: older posts saved with true_false `recurring` field
-      [
-        'key'     => 'recurring',
-        'value'   => '1',
-        'compare' => '=',
-      ],
-    ],
-  ]);
-
-  if ($query_recurring->have_posts()) {
-    while ($query_recurring->have_posts()) {
-      $query_recurring->the_post();
-      $card = \App\EventRecurrence::nextCard(get_the_ID());
-      if ($card) $events[] = $card;
-    }
-    wp_reset_postdata();
-  }
-
-  // Sort merged list by next occurrence, then take the requested limit
-  if (!empty($events)) {
-    usort($events, fn($a, $b) => $a['sort_ts'] <=> $b['sort_ts']);
-    $events = array_slice($events, 0, (int) $limit);
-  }
-
-  $items = !empty($events) ? $events : $fallback_sessions;
+  $items = \App\Content::upcomingEvents($limit ?: 3);
 @endphp
 
 <section class="go-block not-prose bg-white px-6 py-[84px]">
@@ -105,6 +28,11 @@
     </div>
 
     {{-- Event cards --}}
+    @if(empty($items))
+      <div class="p-[26px] rounded-[20px] bg-go-mint border-2 border-go-mint">
+        <p class="font-body text-[18px] text-go-ink-soft leading-[1.55]">{{ $empty_message }}</p>
+      </div>
+    @else
     <div class="grid gap-[22px]" style="grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr))">
       @foreach($items as $item)
         @php $card_tag = !empty($item['url']) ? 'a' : 'div'; $card_href = $item['url'] ?? ''; @endphp
@@ -130,6 +58,7 @@
         </{{ $card_tag }}>
       @endforeach
     </div>
+    @endif
 
   </div>
 </section>

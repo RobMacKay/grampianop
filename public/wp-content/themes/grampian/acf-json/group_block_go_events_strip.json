@@ -89,105 +89,24 @@
             "append": ""
         },
         {
-            "key": "field_go_es_fallback",
-            "label": "Fallback sessions",
-            "name": "fallback_sessions",
+            "key": "field_go_es_empty",
+            "label": "Message when no events",
+            "name": "empty_message",
             "aria-label": "",
-            "type": "repeater",
-            "instructions": "Shown when no future events exist in WordPress. Use for recurring weekly sessions.",
+            "type": "text",
+            "instructions": "Shown when there are no upcoming events.",
             "required": 0,
-            "conditional_logic": false,
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "layout": "table",
-            "button_label": "Add session",
-            "min": 0,
-            "max": 6,
-            "sub_fields": [
-                {
-                    "key": "field_go_es_fb_weekday",
-                    "label": "Weekday",
-                    "name": "weekday",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "3 letters, e.g. WED",
-                    "required": 0,
-                    "conditional_logic": false,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
-                },
-                {
-                    "key": "field_go_es_fb_day",
-                    "label": "Day number",
-                    "name": "day",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": false,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
-                },
-                {
-                    "key": "field_go_es_fb_title",
-                    "label": "Title",
-                    "name": "title",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": false,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
-                },
-                {
-                    "key": "field_go_es_fb_detail",
-                    "label": "Detail",
-                    "name": "detail",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "Time \u00b7 Short description",
-                    "required": 0,
-                    "conditional_logic": false,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
-                }
-            ]
+            "default_value": "There are no upcoming events right now \u2014 check back soon.",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -208,5 +127,5 @@
     "active": true,
     "description": "Fields for the GO: Events Strip block",
     "show_in_rest": 0,
-    "modified": 1786901657
+    "modified": 1791294236
 }

@@ -26,7 +26,11 @@
                             "type": "text",
                             "instructions": "",
                             "required": 0,
-                            "wrapper": {"width": "", "class": "", "id": ""}
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            }
                         },
                         {
                             "key": "field_grampian_text_content",
@@ -263,7 +267,7 @@
                             "label": "HTML",
                             "name": "html",
                             "type": "textarea",
-                            "instructions": "Paste raw HTML here. Be careful — no escaping is applied.",
+                            "instructions": "Paste raw HTML here. Be careful \u2014 no escaping is applied.",
                             "required": 1,
                             "rows": 8,
                             "new_lines": ""
@@ -428,8 +432,8 @@
                             "required": 0,
                             "choices": {
                                 "center": "Centre",
-                                "left":   "Left",
-                                "right":  "Right"
+                                "left": "Left",
+                                "right": "Right"
                             },
                             "default_value": "center",
                             "return_format": "value",
@@ -685,18 +689,56 @@
                             "new_lines": "br"
                         },
                         {
+                            "key": "field_grampian_activities_source_fc",
+                            "label": "Activities to show",
+                            "name": "source",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "\"All\" shows every published activity in menu order. Existing blocks with chosen activities keep showing those.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "all": "All published activities",
+                                "selected": "Choose activities"
+                            },
+                            "default_value": "all",
+                            "layout": "horizontal",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "save_other_choice": 0
+                        },
+                        {
                             "key": "field_grampian_activities_items",
-                            "label": "Activities",
+                            "label": "Choose activities",
                             "name": "activities",
                             "type": "relationship",
                             "instructions": "Select and order the activities to display. Drag to reorder.",
                             "required": 0,
-                            "post_type": ["activity"],
+                            "post_type": [
+                                "activity"
+                            ],
                             "taxonomy": [],
-                            "filters": ["search"],
-                            "return_format": "object",
+                            "filters": [
+                                "search"
+                            ],
+                            "return_format": "id",
                             "min": "",
-                            "max": ""
+                            "max": "",
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_grampian_activities_source_fc",
+                                        "operator": "==",
+                                        "value": "selected"
+                                    }
+                                ]
+                            ]
                         }
                     ],
                     "min": "",
@@ -713,7 +755,7 @@
                             "label": "Image",
                             "name": "image",
                             "type": "image",
-                            "instructions": "Large banner image. Recommended: 1200×500px or wider.",
+                            "instructions": "Large banner image. Recommended: 1200\u00d7500px or wider.",
                             "required": 1,
                             "return_format": "array",
                             "preview_size": "medium",
@@ -774,5 +816,5 @@
     "active": true,
     "description": "Flexible content builder for pages",
     "show_in_rest": false,
-    "modified": 1743293940
+    "modified": 1791294236
 }

@@ -1,7 +1,8 @@
 @php
   $title      = $block['title'] ?? null;
   $intro      = $block['intro'] ?? null;
-  $activities = $block['activities'] ?? [];
+  $selected   = $block['activities'] ?? [];
+  $activities = \App\Content::activityIds(\App\Content::resolveSource($block['source'] ?? null, $selected), $selected);
 @endphp
 
 @if($title || $intro || $activities)
@@ -25,11 +26,11 @@
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-12"
           x-data="{ open: null }"
         >
-          @foreach($activities as $activity)
-            @php setup_postdata($GLOBALS['post'] = $activity); @endphp
+          @foreach($activities as $activity_id)
+            @php setup_postdata($GLOBALS['post'] = get_post($activity_id)); @endphp
             @include('components.activity-card', [
-              'title'     => get_the_title($activity),
-              'permalink' => get_permalink($activity),
+              'title'     => get_the_title($activity_id),
+              'permalink' => get_permalink($activity_id),
               'index'     => $loop->index,
             ])
           @endforeach

@@ -39,7 +39,7 @@
         <div class="font-body text-[19px] leading-[1.6] text-go-ink-soft mb-8">{!! $intro !!}</div>
       @endif
 
-      <div class="rounded-[22px] bg-white border border-go-line p-[32px]">
+      <div class="rounded-[22px] bg-white border border-go-line p-6 sm:p-8 md:p-10">
         @if($is_preview)
           {{-- acf_form() cannot render inside the editor preview iframe (it needs
                acf_form_head(), which only runs on the front end), so show the

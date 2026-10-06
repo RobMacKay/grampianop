@@ -6,22 +6,23 @@
 
 namespace App;
 
-use App\Forms\ContactFormHandler;
+use App\Forms\BookingAdmin;
+use App\Forms\BookingForm;
+use App\Forms\BookingNotifier;
 use App\Forms\ContactNotifier;
+use App\Forms\FormPages;
 use App\Forms\ReferralNotifier;
+use App\Forms\Turnstile;
 use Illuminate\Support\Facades\Vite;
 
 Editor::init();
 Blocks::init();
 ReferralNotifier::init();
 ContactNotifier::init();
-
-/**
- * Legacy contact form handler, still used by template-contact.blade.php.
- * Retire once the Contact page is switched over to the Contact Form block.
- */
-add_action('admin_post_submit_contact', [ContactFormHandler::class, 'handle']);
-add_action('admin_post_nopriv_submit_contact', [ContactFormHandler::class, 'handle']);
+BookingForm::init();
+BookingNotifier::init();
+BookingAdmin::init();
+Turnstile::init();
 
 /**
  * Boot ACF's front-end form handler.
@@ -31,24 +32,7 @@ add_action('admin_post_nopriv_submit_contact', [ContactFormHandler::class, 'hand
  * priority 1 rather than anything inside the view.
  */
 add_action('template_redirect', function () {
-    if (! function_exists('acf_form_head')) {
-        return;
-    }
-
-    if (is_page_template('template-referral.blade.php')) {
-        acf_form_head();
-
-        return;
-    }
-
-    // The contact form is a block, so there is no template to key off. Note
-    // has_block() only inspects post_content — a contact block nested inside a
-    // reusable block or the flexible-content template will not be found here.
-    $post = get_queried_object();
-
-    // Note the leading backslash: this file is namespaced App, so an unqualified
-    // WP_Post would resolve to App\WP_Post and never match.
-    if ($post instanceof \WP_Post && has_block('acf/contact-form', $post)) {
+    if (function_exists('acf_form_head') && FormPages::current()) {
         acf_form_head();
     }
 }, 1);
