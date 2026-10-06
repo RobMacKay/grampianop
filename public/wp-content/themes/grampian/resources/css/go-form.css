@@ -418,3 +418,20 @@
 .go-form .go-turnstile.is-interactive {
   flex: 1 1 100%;
 }
+
+/* ── Places left (booking-spaces.js) ──────────────────────────────────── */
+
+.go-form .acf-fields > .go-spaces {
+  flex: 1 1 100%;
+  /* sits snug under the row it describes, which the flex gap would otherwise push away */
+  margin: -12px 0 0;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--color-go-green-deep);
+}
+
+.go-form .acf-fields > .go-spaces.is-full {
+  color: var(--color-go-red);
+}

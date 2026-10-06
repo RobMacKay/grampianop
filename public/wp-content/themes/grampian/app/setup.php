@@ -9,6 +9,7 @@ namespace App;
 use App\Forms\BookingAdmin;
 use App\Forms\BookingForm;
 use App\Forms\BookingNotifier;
+use App\Forms\BookingSpaces;
 use App\Forms\ContactNotifier;
 use App\Forms\FormPages;
 use App\Forms\ReferralNotifier;
@@ -22,6 +23,7 @@ ContactNotifier::init();
 BookingForm::init();
 BookingNotifier::init();
 BookingAdmin::init();
+BookingSpaces::init();
 Turnstile::init();
 
 /**

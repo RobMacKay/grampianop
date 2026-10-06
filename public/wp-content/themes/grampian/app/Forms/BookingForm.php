@@ -18,9 +18,12 @@ class BookingForm
 
     private const DATE_KEY = 'field_grampian_bk_date';
 
+    private const ATTENDEES_KEY = 'field_grampian_bk_attendees';
+
     public static function init(): void
     {
         add_filter('acf/prepare_field/key=' . self::DATE_KEY, [self::class, 'prepareDate']);
+        add_filter('acf/prepare_field/key=' . self::ATTENDEES_KEY, [self::class, 'prepareAttendees']);
         add_action('acf/validate_save_post', [self::class, 'validate']);
     }
 
@@ -69,6 +72,26 @@ class BookingForm
     }
 
     /**
+     * On a limited one-off event nobody can book more people than there are
+     * places. (Sessions chosen by date are capped live in booking-spaces.js, and
+     * both cases are enforced again server-side in validate().)
+     */
+    public static function prepareAttendees($field)
+    {
+        $id = self::$currentItem;
+
+        if ($id && BookingSpaces::isOneOff($id)) {
+            $left = BookingSpaces::left($id, BookingSpaces::sessionDate($id));
+
+            if ($left !== null) {
+                $field['max'] = max(1, min(BookingSpaces::MAX_PER_BOOKING, $left));
+            }
+        }
+
+        return $field;
+    }
+
+    /**
      * Runs on ACF's AJAX validation and again on the real submit. Does nothing
      * unless the request is this theme's booking form.
      */
@@ -78,15 +101,57 @@ class BookingForm
             return;
         }
 
-        if (! self::isBookable((int) ($_POST['go_booking_item'] ?? 0))) {
+        $item = (int) ($_POST['go_booking_item'] ?? 0);
+
+        if (! self::isBookable($item)) {
             acf_add_validation_error('', 'Sorry, bookings for this are closed. Please call us.');
+
+            return;
         }
 
         // ACF's date picker posts Ymd in its hidden input, and has no minimum-date setting.
-        $digits = preg_replace('/\D/', '', (string) ($_POST['acf'][self::DATE_KEY] ?? ''));
+        $chosen = preg_replace('/\D/', '', (string) ($_POST['acf'][self::DATE_KEY] ?? ''));
 
-        if (strlen($digits) === 8 && $digits < wp_date('Ymd')) {
+        if (strlen($chosen) === 8 && $chosen < wp_date('Ymd')) {
             acf_add_validation_error('acf[' . self::DATE_KEY . ']', 'Please choose a date that has not passed.');
+
+            return;
+        }
+
+        self::validateSpaces($item, $chosen);
+    }
+
+    /** Refuse a booking that would put the session over its limit. */
+    private static function validateSpaces(int $item, string $chosen): void
+    {
+        $session = BookingSpaces::sessionDate($item, $chosen);
+        $left    = $session === '' ? null : BookingSpaces::left($item, $session);
+
+        if ($left === null) {
+            return; // unlimited, or no date picked yet (ACF's required check covers that)
+        }
+
+        $when     = BookingSpaces::dateLabel($session);
+        $oneOff   = BookingSpaces::isOneOff($item);
+        $people   = (int) ($_POST['acf'][self::ATTENDEES_KEY] ?? 1);
+        $dateName = $oneOff ? '' : 'acf[' . self::DATE_KEY . ']';
+
+        if ($left === 0) {
+            acf_add_validation_error(
+                $dateName,
+                $oneOff
+                    ? 'Sorry, this is now fully booked. Please call us to ask about the waiting list.'
+                    : sprintf('Sorry, %s is fully booked. Please choose another date or call us.', $when)
+            );
+
+            return;
+        }
+
+        if ($people > $left) {
+            acf_add_validation_error(
+                'acf[' . self::ATTENDEES_KEY . ']',
+                sprintf('Only %d %s left%s.', $left, $left === 1 ? 'place' : 'places', $oneOff ? '' : ' on ' . $when)
+            );
         }
     }
 

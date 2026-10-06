@@ -541,6 +541,69 @@
             "message": ""
         },
         {
+            "key": "field_grampian_ev_limit_spaces",
+            "label": "Limit the number of places",
+            "name": "limit_spaces",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Switch on to stop taking bookings once the places are full.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_bookings_enabled",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Limited",
+            "ui_off_text": "Unlimited",
+            "message": ""
+        },
+        {
+            "key": "field_grampian_ev_spaces_total",
+            "label": "Places available",
+            "name": "spaces_total",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "For a regular group this is the limit for each session date.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_bookings_enabled",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_grampian_ev_limit_spaces",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 10,
+            "min": 1,
+            "max": "",
+            "step": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": "places"
+        },
+        {
             "key": "field_grampian_ev_booking_intro",
             "label": "Text above the booking form",
             "name": "booking_intro",
@@ -615,5 +678,5 @@
     "active": true,
     "description": "Date, time, recurrence, location and booking details for events",
     "show_in_rest": false,
-    "modified": 1791294363
+    "modified": 1791295716
 }

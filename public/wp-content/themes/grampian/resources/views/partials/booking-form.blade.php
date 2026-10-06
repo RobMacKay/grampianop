@@ -12,6 +12,15 @@
   $intro      = (string) get_field('booking_intro', $item_id);
   $item_title = get_the_title($item_id);
 
+  // Places: a one-off event has a single count; anything else is counted per date,
+  // which booking-spaces.js looks up once the visitor picks one.
+  $limit     = \App\Forms\BookingSpaces::limit($item_id);
+  $one_off   = \App\Forms\BookingSpaces::isOneOff($item_id);
+  $left_now  = ($limit !== null && $one_off)
+      ? \App\Forms\BookingSpaces::left($item_id, \App\Forms\BookingSpaces::sessionDate($item_id))
+      : null;
+  $is_full   = $left_now === 0;
+
   // For an event, say when it is. One-off events need no date field — this is the date.
   $when = '';
   if (get_post_type($item_id) === 'event' && ($next = \App\EventRecurrence::nextCard($item_id))) {
@@ -49,12 +58,29 @@
         <p class="font-body text-[18px] leading-[1.6] text-go-ink-soft mb-2">{{ $when }}</p>
       @endif
 
+      @if($limit !== null)
+        <p class="font-heading font-bold text-[18px] mb-2 {{ $is_full ? 'text-go-red' : 'text-go-green-deep' }}" role="status">
+          @if($left_now !== null)
+            {{ $is_full ? 'Fully booked' : $left_now . ($left_now === 1 ? ' place left' : ' places left') }}
+          @else
+            Places are limited — we will show how many are left once you choose a date.
+          @endif
+        </p>
+      @endif
+
       @if($intro)
         <p class="font-body text-[19px] leading-[1.6] text-go-ink-soft mb-2">{{ $intro }}</p>
       @endif
 
       <div class="rounded-[22px] bg-white border border-go-line p-6 sm:p-8 md:p-10 mt-8">
-        @if($is_preview)
+        @if($is_full)
+          <p class="font-body text-[18px] leading-[1.6] text-go-ink-soft">
+            Sorry, this is fully booked. Call us on
+            <a href="tel:{{ preg_replace('/\s+/', '', $phone) }}"
+               class="font-bold text-go-green-deep underline decoration-2 underline-offset-[3px] hover:text-go-green-deepest">{{ $phone }}</a>
+            to ask about the waiting list.
+          </p>
+        @elseif($is_preview)
           {{-- acf_form() cannot render inside the editor preview iframe. --}}
           <p class="font-body text-[18px] text-go-ink-soft">
             The booking form for <strong>{{ $item_title }}</strong> renders here on the published page.
@@ -73,7 +99,13 @@
                 ],
                 'field_groups'       => ['group_grampian_booking_fields'],
                 'form_attributes'    => ['class' => 'acf-form go-form'],
-                'html_before_fields' => sprintf('<input type="hidden" name="go_booking_item" value="%d">', $item_id),
+                'html_before_fields' => sprintf(
+                    '<input type="hidden" name="go_booking_item" value="%d"%s>',
+                    $item_id,
+                    ($limit !== null && ! $one_off)
+                        ? ' data-spaces-url="' . esc_url(admin_url('admin-ajax.php')) . '"'
+                        : ''
+                ),
                 'submit_value'       => 'Send booking request',
                 'honeypot'           => true,
                 'updated_message'    => false,

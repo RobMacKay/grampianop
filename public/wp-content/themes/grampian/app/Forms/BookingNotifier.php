@@ -52,7 +52,24 @@ class BookingNotifier
         }
 
         update_field('field_grampian_bk_booked_item', $item, $post_id);
-        update_field('field_grampian_bk_status', 'new', $post_id);
+
+        // Every booking carries its session date, so places can be counted per
+        // session. One-off events do not ask for one, so stamp the event's own.
+        $chosen  = (string) get_post_meta($post_id, 'booking_date', true);
+        $session = BookingSpaces::sessionDate($item, $chosen);
+
+        if ($session !== '' && $chosen === '') {
+            update_post_meta($post_id, 'booking_date', $session);
+            update_post_meta($post_id, '_booking_date', 'field_grampian_bk_date');
+        }
+
+        // The form refuses over-limit bookings, but two people can submit at the
+        // same moment. Whoever lands second goes on the waiting list for staff
+        // to sort out, rather than silently overselling.
+        $left   = BookingSpaces::left($item, $session, $post_id);
+        $people = (int) get_post_meta($post_id, 'attendees', true);
+
+        update_field('field_grampian_bk_status', ($left !== null && $people > $left) ? 'waitlist' : 'new', $post_id);
     }
 
     private static function itemId(int $post_id): int
@@ -72,7 +89,7 @@ class BookingNotifier
         $date = (string) get_post_meta($post_id, 'booking_date', true); // Ymd
 
         if (strlen($date) === 8) {
-            return wp_date('j F Y', strtotime($date));
+            return wp_date('j F Y', strtotime($date . ' 12:00:00'));
         }
 
         return 'Next session';
@@ -116,6 +133,19 @@ class BookingNotifier
             'Support needs'   => trim((string) get_post_meta($post_id, 'requirements', true)) !== '' ? 'Yes' : 'No',
             'Received'        => wp_date('j F Y \a\t H:i'),
         ];
+
+        // Limited places: say what is left, and flag a booking that went over.
+        $itemId  = self::itemId($post_id);
+        $session = BookingSpaces::sessionDate($itemId, (string) get_post_meta($post_id, 'booking_date', true));
+        $left    = $itemId ? BookingSpaces::left($itemId, $session) : null;
+
+        if ($left !== null) {
+            $rows['Places left'] = (string) $left;
+        }
+
+        if (get_post_meta($post_id, 'booking_status', true) === 'waitlist') {
+            $rows['Status'] = 'Waiting list — this booking went over the limit';
+        }
 
         $body = '<p>A new booking request has been submitted through the website.</p><table cellpadding="6">';
 
