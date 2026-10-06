@@ -1280,8 +1280,33 @@
                             "new_lines": "br"
                         },
                         {
+                            "key": "field_grampian_activities_source_fc",
+                            "label": "Activities to show",
+                            "name": "source",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "\"All\" shows every published activity in menu order. Existing blocks with chosen activities keep showing those.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "all": "All published activities",
+                                "selected": "Choose activities"
+                            },
+                            "default_value": "all",
+                            "layout": "horizontal",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "save_other_choice": 0
+                        },
+                        {
                             "key": "field_grampian_activities_items",
-                            "label": "Activities",
+                            "label": "Choose activities",
                             "name": "activities",
                             "type": "relationship",
                             "instructions": "Select and order the activities to display. Drag to reorder.",
@@ -1293,9 +1318,18 @@
                             "filters": [
                                 "search"
                             ],
-                            "return_format": "object",
+                            "return_format": "id",
                             "min": "",
-                            "max": ""
+                            "max": "",
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_grampian_activities_source_fc",
+                                        "operator": "==",
+                                        "value": "selected"
+                                    }
+                                ]
+                            ]
                         }
                     ],
                     "min": "",
@@ -1841,6 +1875,100 @@
                             "return_format": "array"
                         },
                         {
+                            "key": "field_go_sg_fc_source",
+                            "label": "Activities to show",
+                            "name": "source",
+                            "aria-label": "",
+                            "type": "radio",
+                            "instructions": "Activities come from the Activities post type — add or edit them there.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "all": "All published activities",
+                                "selected": "Choose activities"
+                            },
+                            "default_value": "all",
+                            "layout": "horizontal",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "save_other_choice": 0,
+                            "parent": "field_grampian_content_blocks",
+                            "parent_layout": "layout_go_service_grid"
+                        },
+                        {
+                            "key": "field_go_sg_fc_activities",
+                            "label": "Choose activities",
+                            "name": "activities",
+                            "aria-label": "",
+                            "type": "relationship",
+                            "instructions": "Select and order the activities to display. Drag to reorder.",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_go_sg_fc_source",
+                                        "operator": "==",
+                                        "value": "selected"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "activity"
+                            ],
+                            "taxonomy": [],
+                            "filters": [
+                                "search"
+                            ],
+                            "return_format": "id",
+                            "min": "",
+                            "max": "",
+                            "parent": "field_grampian_content_blocks",
+                            "parent_layout": "layout_go_service_grid"
+                        },
+                        {
+                            "key": "field_go_sg_fc_limit",
+                            "label": "Maximum to show",
+                            "name": "limit",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "0 = show all.",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_go_sg_fc_source",
+                                        "operator": "==",
+                                        "value": "all"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 0,
+                            "min": 0,
+                            "max": "",
+                            "step": 1,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent": "field_grampian_content_blocks",
+                            "parent_layout": "layout_go_service_grid"
+                        },
+                        {
                             "key": "field_go_sg_highlight_panels",
                             "label": "Highlight panels",
                             "name": "highlight_panels",
@@ -2218,105 +2346,24 @@
                             "append": ""
                         },
                         {
-                            "key": "field_go_es_fallback",
-                            "label": "Fallback sessions",
-                            "name": "fallback_sessions",
+                            "key": "field_go_es_fc_empty",
+                            "label": "Message when no events",
+                            "name": "empty_message",
                             "aria-label": "",
-                            "type": "repeater",
-                            "instructions": "Shown when no future events exist in WordPress. Use for recurring weekly sessions.",
+                            "type": "text",
+                            "instructions": "Shown when there are no upcoming events.",
                             "required": 0,
-                            "conditional_logic": false,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "layout": "table",
-                            "button_label": "Add session",
-                            "min": 0,
-                            "max": 6,
-                            "sub_fields": [
-                                {
-                                    "key": "field_go_es_fb_weekday",
-                                    "label": "Weekday",
-                                    "name": "weekday",
-                                    "aria-label": "",
-                                    "type": "text",
-                                    "instructions": "3 letters, e.g. WED",
-                                    "required": 0,
-                                    "conditional_logic": false,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "maxlength": "",
-                                    "placeholder": "",
-                                    "prepend": "",
-                                    "append": ""
-                                },
-                                {
-                                    "key": "field_go_es_fb_day",
-                                    "label": "Day number",
-                                    "name": "day",
-                                    "aria-label": "",
-                                    "type": "text",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": false,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "maxlength": "",
-                                    "placeholder": "",
-                                    "prepend": "",
-                                    "append": ""
-                                },
-                                {
-                                    "key": "field_go_es_fb_title",
-                                    "label": "Title",
-                                    "name": "title",
-                                    "aria-label": "",
-                                    "type": "text",
-                                    "instructions": "",
-                                    "required": 1,
-                                    "conditional_logic": false,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "maxlength": "",
-                                    "placeholder": "",
-                                    "prepend": "",
-                                    "append": ""
-                                },
-                                {
-                                    "key": "field_go_es_fb_detail",
-                                    "label": "Detail",
-                                    "name": "detail",
-                                    "aria-label": "",
-                                    "type": "text",
-                                    "instructions": "Time · Short description",
-                                    "required": 0,
-                                    "conditional_logic": false,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "maxlength": "",
-                                    "placeholder": "",
-                                    "prepend": "",
-                                    "append": ""
-                                }
-                            ]
+                            "default_value": "There are no upcoming events right now — check back soon.",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
                         }
                     ],
                     "min": "",
@@ -2788,5 +2835,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1786901344
+    "modified": 1791294236
 }

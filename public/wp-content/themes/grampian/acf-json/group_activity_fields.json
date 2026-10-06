@@ -14,6 +14,24 @@
             "library": "all"
         },
         {
+            "key": "field_grampian_act_summary",
+            "label": "Short summary",
+            "name": "summary",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "One or two sentences shown on activity cards and grids. Falls back to the card intro text if empty.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "maxlength": 200,
+            "new_lines": ""
+        },
+        {
             "key": "field_grampian_act_intro",
             "label": "Card Intro Text",
             "name": "intro",
@@ -40,14 +58,14 @@
             "instructions": "Background gradient colour for the activity card.",
             "required": 0,
             "choices": {
-                "red":    "Red",
+                "red": "Red",
                 "orange": "Orange",
                 "yellow": "Yellow",
-                "green":  "Green",
-                "blue":   "Blue",
+                "green": "Green",
+                "blue": "Blue",
                 "purple": "Purple",
-                "pink":   "Pink",
-                "teal":   "Teal"
+                "pink": "Pink",
+                "teal": "Teal"
             },
             "default_value": "green",
             "return_format": "value",
@@ -73,5 +91,5 @@
     "active": true,
     "description": "Icon, intro text and CTA button settings for activity cards",
     "show_in_rest": false,
-    "modified": 1743379200
+    "modified": 1791294226
 }

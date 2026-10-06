@@ -1,35 +1,29 @@
-@php
-  $events = new WP_Query([
-    'post_type'      => 'event',
-    'posts_per_page' => 6,
-    'meta_key'       => 'start_date',
-    'meta_value'     => date('Y-m-d H:i:s'),
-    'meta_compare'   => '>=',
-    'orderby'        => 'meta_value',
-    'order'          => 'ASC',
-  ]);
-@endphp
+@php $items = \App\Content::upcomingEvents(6); @endphp
 
-<section class="py-10">
-  <div class="mx-auto max-w-screen-xl px-4">
-    <h2 class="text-2xl font-semibold mb-6">Upcoming Events</h2>
-    @if($events->have_posts())
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        @while($events->have_posts())
-          @php $events->the_post(); @endphp
-          @include('components.event-card', [
-            'title'      => get_the_title(),
-            'permalink'  => get_permalink(),
-            'start_date' => get_field('start_date'),
-            'end_date'   => get_field('end_date'),
-            'location'   => get_field('location'),
-            'all_day'    => get_field('all_day'),
-          ])
-        @endwhile
+<section class="go-block not-prose bg-white px-6 py-[72px]">
+  <div class="max-w-[1240px] mx-auto">
+    <h2 class="font-heading font-bold text-go-ink tracking-[-0.8px] mb-8" style="font-size: clamp(30px, 3vw, 40px)">Upcoming events</h2>
+
+    @if($items)
+      <div class="grid gap-[22px]" style="grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr))">
+        @foreach($items as $item)
+          <a href="{{ $item['url'] }}"
+             class="flex items-start gap-[22px] p-[26px] rounded-[20px] bg-go-mint border-2 border-go-mint hover:border-go-green hover:shadow-[0_12px_30px_rgba(20,24,26,0.10)] transition-shadow">
+            <div class="flex flex-col items-center justify-center bg-white rounded-[14px] shrink-0 py-3" style="width: 82px;" aria-hidden="true">
+              <span class="font-heading font-bold text-[15px] text-go-green-deep uppercase tracking-[1px]">{{ $item['weekday'] }}</span>
+              <span class="font-heading font-extrabold text-[30px] text-go-ink leading-none">{{ $item['day'] }}</span>
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <h3 class="font-heading font-bold text-[22px] text-go-ink leading-[1.2]">{{ $item['title'] }}</h3>
+              @if(!empty($item['detail']))
+                <p class="font-body text-[18px] text-go-ink-soft leading-[1.55]">{{ $item['detail'] }}</p>
+              @endif
+            </div>
+          </a>
+        @endforeach
       </div>
     @else
-      <p class="text-gray-500">No upcoming events at the moment. Check back soon!</p>
+      <p class="font-body text-[18px] text-go-ink-soft">There are no upcoming events right now — check back soon.</p>
     @endif
   </div>
 </section>
-@php wp_reset_postdata(); @endphp

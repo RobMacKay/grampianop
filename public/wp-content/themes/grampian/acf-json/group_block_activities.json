@@ -21,8 +21,33 @@
             "new_lines": "br"
         },
         {
+            "key": "field_grampian_activities_source",
+            "label": "Activities to show",
+            "name": "source",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "\"All\" shows every published activity in menu order. Existing blocks with chosen activities keep showing those.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "all": "All published activities",
+                "selected": "Choose activities"
+            },
+            "default_value": "all",
+            "layout": "horizontal",
+            "return_format": "value",
+            "allow_null": 0,
+            "other_choice": 0,
+            "save_other_choice": 0
+        },
+        {
             "key": "field_grampian_activities_items",
-            "label": "Activities",
+            "label": "Choose activities",
             "name": "activities",
             "type": "relationship",
             "instructions": "Select and order the activities to display. Drag to reorder.",
@@ -34,9 +59,18 @@
             "filters": [
                 "search"
             ],
-            "return_format": "object",
+            "return_format": "id",
             "min": "",
-            "max": ""
+            "max": "",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_activities_source",
+                        "operator": "==",
+                        "value": "selected"
+                    }
+                ]
+            ]
         }
     ],
     "location": [
@@ -57,5 +91,5 @@
     "active": true,
     "description": "Fields for the Activities block",
     "show_in_rest": 0,
-    "modified": 1786901657
+    "modified": 1791294236
 }
