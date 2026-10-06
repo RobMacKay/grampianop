@@ -50,6 +50,7 @@ class Blocks
             ['slug' => 'quote',      'view' => 'blocks.quote',        'title' => 'Quote',         'icon' => 'format-quote'],
             ['slug' => 'cards',      'view' => 'blocks.cards',        'title' => 'Cards',         'icon' => 'columns'],
             ['slug' => 'contact-form', 'view' => 'blocks.contact-form', 'title' => 'Contact Form', 'icon' => 'email'],
+            ['slug' => 'booking-form', 'view' => 'blocks.booking-form', 'title' => 'Booking Form', 'icon' => 'tickets-alt'],
         ];
 
         foreach ($fullWidthBlocks as $block) {

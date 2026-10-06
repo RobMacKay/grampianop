@@ -16,7 +16,7 @@ class Editor
         }
 
         // Keep classic editor for data-entry CPTs that use ACF metaboxes only
-        if (in_array($post->post_type, ['position', 'activity', 'event', 'contact_submission', 'referral'], true)) {
+        if (in_array($post->post_type, ['position', 'activity', 'event', 'contact_submission', 'referral', 'booking'], true)) {
             return false;
         }
 

@@ -29,6 +29,15 @@
             "default_value": "info@grampianopportunities.org.uk"
         },
         {
+            "key": "field_grampian_opt_bookings_email",
+            "label": "Bookings Email",
+            "name": "bookings_email",
+            "type": "text",
+            "instructions": "Where booking notifications go (comma-separated). Falls back to the main email.",
+            "required": 0,
+            "default_value": ""
+        },
+        {
             "key": "field_grampian_opt_address",
             "label": "Address",
             "name": "address",
@@ -192,5 +201,5 @@
     "active": true,
     "description": "Global site settings: contact info, links, branding, scripts",
     "show_in_rest": false,
-    "modified": 1743293940
+    "modified": 1791294363
 }

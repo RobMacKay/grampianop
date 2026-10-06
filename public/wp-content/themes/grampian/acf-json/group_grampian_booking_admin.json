@@ -1,0 +1,100 @@
+{
+    "key": "group_grampian_booking_admin",
+    "title": "Booking Status",
+    "fields": [
+        {
+            "key": "field_grampian_bk_booked_item",
+            "label": "Booked for",
+            "name": "booked_item",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "Set automatically from the page the booking was made on.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "event",
+                "activity"
+            ],
+            "taxonomy": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "return_format": "id",
+            "ui": 1
+        },
+        {
+            "key": "field_grampian_bk_status",
+            "label": "Status",
+            "name": "booking_status",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "new": "New",
+                "confirmed": "Confirmed",
+                "waitlist": "Waiting list",
+                "cancelled": "Cancelled"
+            },
+            "default_value": "new",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_grampian_bk_staff_notes",
+            "label": "Staff notes",
+            "name": "staff_notes",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Internal only \u2014 never shown on the website.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": 4,
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "booking"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Staff-only fields. Never rendered on the public booking form.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1791294363
+}

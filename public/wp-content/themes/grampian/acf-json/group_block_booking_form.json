@@ -1,0 +1,49 @@
+{
+    "key": "group_block_booking_form",
+    "title": "Block: Booking Form",
+    "fields": [
+        {
+            "key": "field_block_booking_item",
+            "label": "Event or activity",
+            "name": "booking_item",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "The booking form takes bookings for this item. Switch on \"Take bookings on the website\" on the item itself.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "event",
+                "activity"
+            ],
+            "taxonomy": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "return_format": "id",
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/booking-form"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Fields for the Booking Form block",
+    "show_in_rest": 0,
+    "modified": 1791294475
+}

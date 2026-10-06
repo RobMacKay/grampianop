@@ -502,6 +502,99 @@
             "media_upload": 1,
             "delay": 0,
             "default_value": ""
+        },
+        {
+            "key": "field_grampian_ev_tab_bookings",
+            "label": "Bookings",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_grampian_ev_bookings_enabled",
+            "label": "Take bookings on the website",
+            "name": "bookings_enabled",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Shows a booking form on this page. Replaces the external booking link, if there is one.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "On",
+            "ui_off_text": "Off",
+            "message": ""
+        },
+        {
+            "key": "field_grampian_ev_booking_intro",
+            "label": "Text above the booking form",
+            "name": "booking_intro",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional. For example: what to bring, or how soon we reply.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_bookings_enabled",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_grampian_ev_booking_notify",
+            "label": "Send booking notifications to",
+            "name": "booking_notify_emails",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Comma-separated email addresses. Leave blank to use the bookings address in Site Settings.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_grampian_ev_bookings_enabled",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -522,5 +615,5 @@
     "active": true,
     "description": "Date, time, recurrence, location and booking details for events",
     "show_in_rest": false,
-    "modified": 1786953285
+    "modified": 1791294363
 }
