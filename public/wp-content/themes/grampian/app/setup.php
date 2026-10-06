@@ -12,6 +12,7 @@ use App\Forms\BookingNotifier;
 use App\Forms\ContactNotifier;
 use App\Forms\FormPages;
 use App\Forms\ReferralNotifier;
+use App\Forms\Turnstile;
 use Illuminate\Support\Facades\Vite;
 
 Editor::init();
@@ -21,6 +22,7 @@ ContactNotifier::init();
 BookingForm::init();
 BookingNotifier::init();
 BookingAdmin::init();
+Turnstile::init();
 
 /**
  * Boot ACF's front-end form handler.

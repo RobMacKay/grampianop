@@ -400,3 +400,21 @@
 .go-referral[x-cloak] .acf-fields > .acf-field {
   visibility: hidden;
 }
+
+/* ── Turnstile ────────────────────────────────────────────────────────── */
+
+/* The widget is invisible unless Cloudflare needs an interaction. While idle it
+   is kept in the render tree (display:none can stall it) but out of the flex
+   row, so it adds no gap; turnstile.js adds .is-interactive when it has to show. */
+.go-form .go-turnstile:not(.is-interactive) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.go-form .go-turnstile.is-interactive {
+  flex: 1 1 100%;
+}
